@@ -1,0 +1,117 @@
+
+.ivd_tree {
+	font-family: 'Verdana';
+	font-size: 10px;
+	line-height: 18px;
+	background-color: #EAEAEA;
+	padding: 20px;
+	margin: 13px 0;
+	box-shadow: 2px 2px 5px #CACFEC;
+	border-radius: 3px;
+	min-width: 400px;
+	overflow-x: auto;
+}
+
+.ivd_item {
+	display: block;
+}
+
+.ivd_clickable {
+	cursor: pointer;
+	color: cornflowerblue;
+	border-bottom: 1px solid cornflowerblue;
+}
+
+.ivd_content {
+	margin-left: 10px;
+	display: block;
+}
+
+.ivd_collapsed {
+	text-overflow: ellipsis;
+	width: 9px;
+	height: 14px;
+	overflow: hidden;
+	display: inline-block;
+	margin-left: 0;
+}
+
+span.ivd_collapsed::before {
+	content: "…";
+}
+
+.ivd_key {
+	color: #F10E7F;
+}
+
+.ivd_key::before {
+	content: "[ ";
+	font-weight: bold;
+}
+
+.ivd_key::after {
+	content: " ]";
+	font-weight: bold;
+}
+
+.ivd_scalar,
+.ivd_pseudo_scalar {
+	color: #CEA91D;
+}
+
+.ivd_scalar,
+.ivd_empty_thing {
+	display: block;
+}
+
+.ivd_inline {
+	display: inline;
+}
+
+.ivd_hidden {
+	display: none;
+}
+
+.ivd_arrow {
+	margin: 0 10px;
+}
+
+.ivd_value {
+	color: #AB8E23;
+	font-size: 12px;
+	margin: 0 1px;
+}
+
+.ivd_noncolor {
+	color: #000;
+}
+
+ul.ivd_overhead {
+	display: block;
+	margin: 0 0 15px;
+	overflow: auto;
+	list-style-type: none;
+	padding: 0;
+}
+
+.ivd_overhead li {
+	float: left;
+	line-height: 13px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-right: 1px solid #000;
+}
+
+.ivd_clickable:hover {
+	border-bottom: 1px dotted cornflowerblue;
+}
+
+.ivd_overhead li:first-child {
+	padding-left: 0;
+}
+
+.ivd_overhead li:last-child {
+	padding-right: 0;
+	border-right: 0;
+}
+
