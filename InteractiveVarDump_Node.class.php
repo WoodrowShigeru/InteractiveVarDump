@@ -226,4 +226,5 @@ class InteractiveVarDump_Node {
 		return $this->is_flat;
 	}
 
+
 }  // end of ( CLASS "InteractiveVarDump_Node" )
