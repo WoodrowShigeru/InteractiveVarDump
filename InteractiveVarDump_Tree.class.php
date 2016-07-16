@@ -1,6 +1,6 @@
 <?php
 
-require_once "InteractiveVarDump/InteractiveVarDump_Node.class.php";
+require_once "InteractiveVarDump_Node.class.php";
 
 class InteractiveVarDump_Tree {
 
@@ -22,7 +22,7 @@ class InteractiveVarDump_Tree {
 
 	public function display() {
 
-		return '<div class="ivd_tree">'.$this->root->display().'</div>';
+		return '<div class="ivd_tree">'.$this->root->display().'</div><!-- /.ivd_tree -->';
 	}
 
 
@@ -30,7 +30,10 @@ class InteractiveVarDump_Tree {
 
 	//==== GETTERS/SETTERS ====//
 
-	// —/—
+	public function get() {
+
+		return $this->root;
+	}
 
 
 }  // end of ( CLASS "InteractiveVarDump_Tree" )
