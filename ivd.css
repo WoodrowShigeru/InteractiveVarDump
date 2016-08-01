@@ -26,6 +26,8 @@ div.ivd_tree {
 	border-radius: 3px;
 	min-width: 400px;
 	overflow-x: auto;
+	z-index: 99999;
+	position: relative;
 }
 
 div.ivd_tree span.ivd_item {
