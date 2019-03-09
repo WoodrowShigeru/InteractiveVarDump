@@ -89,14 +89,14 @@
         if (tree.find('.ivd--key').length) {
           html =
             '<ul class="ivd--overhead">'
-          +   '<li class="ivd--toggle-inline">toggle inline</li>'
+          +   '<li class="ivd--toggle-inline">toggle-break inline</li>'
           ;
           if ( $('.ivd--protected', tree).length ) {
-            html += '<li class="ivd--toggle-protected-properties">toggle protected properties</li>';
+            html += '<li class="ivd--toggle-protected-properties">toggle-show protected properties</li>';
           }
 
           if ( $('.ivd--private', tree).length ) {
-            html += '<li class="ivd--toggle-private-properties">toggle private properties</li>';
+            html += '<li class="ivd--toggle-private-properties">toggle-show private properties</li>';
           }
           if ( $('.ivd--content .ivd--controller', tree).length ) {
             html +=

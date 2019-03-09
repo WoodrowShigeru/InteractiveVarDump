@@ -44,7 +44,7 @@ class Node {
 				$length = count($this->obj);
 				if (!$length) {
 					$out .=
-						'<span class="ivd--scalar ivd-value-wrapper ivd--inline">'
+						'<span class="ivd--scalar ivd--value-wrapper ivd--inline">'
 					.		'array(0) '
 					.		'<span class="ivd--noncolor">{}</span>'
 					.	'</span>'
@@ -97,7 +97,7 @@ class Node {
 				$length = count($reflective_properties);
 				if (!$length) {
 					$out .=
-						'<span class="ivd--scalar ivd-value-wrapper ivd--inline">'
+						'<span class="ivd--scalar ivd--value-wrapper ivd--inline">'
 					.		'object('.$this->classname.') (0) '
 					.		'<span class="ivd--noncolor">{}</span>'
 					.	'</span>'
@@ -199,7 +199,7 @@ class Node {
 
 			}  // end of ( switch-case type )
 
-			$out = '<span class="ivd--scalar ivd-value-wrapper ivd--inline">'.$out.'</span>';
+			$out = '<span class="ivd--scalar ivd--value-wrapper ivd--inline">'.$out.'</span>';
 
 		}  // end of ( is flat )
 
