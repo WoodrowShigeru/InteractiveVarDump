@@ -25,7 +25,7 @@ class Tree {
 
 	public function display() {
 
-		return '<div class="ivd_tree">'.$this->root->display().'</div><!-- /.ivd_tree -->';
+		return '<div class="ivd--tree">'.$this->root->display().'</div><!-- /.ivd--tree -->';
 	}
 
 

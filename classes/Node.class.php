@@ -44,36 +44,36 @@ class Node {
 				$length = count($this->obj);
 				if (!$length) {
 					$out .=
-						'<span class="ivd_scalar ivd_inline">'
+						'<span class="ivd--scalar ivd-value-wrapper ivd--inline">'
 					.		'array(0) '
-					.		'<span class="ivd_noncolor">{}</span>'
+					.		'<span class="ivd--noncolor">{}</span>'
 					.	'</span>'
 					;
 				}
 				else {
 					$out .=
-						'<span class="ivd_controller">'
+						'<span class="ivd--controller">'
 					.		'array('.$length.')'
 					.	'</span> '
 					.	'{'
-					.		'<span class="ivd_content">'
+					.		'<span class="ivd--content">'
 					;
 
 					foreach($this->obj as $key => $element) {
 						$tmp = new Node($element);
 						$out .=
-							'<span class="ivd_item">'
-						.		'<span class="ivd_key">'
+							'<span class="ivd--item">'
+						.		'<span class="ivd--key">'
 						.			(is_integer($key)  ? $key  : '"'.$key.'"')
 						.		'</span>'
-						.		'<span class="ivd_arrow">=></span>'
+						.		'<span class="ivd--arrow">=></span>'
 						.		$tmp->display()
-						.	'</span><!-- /.ivd_item -->'
+						.	'</span><!-- /.ivd--item -->'
 						;
 					}
 
 					$out .=
-							'</span><!-- /.ivd_content -->'
+							'</span><!-- /.ivd--content -->'
 					.	'}'
 					;
 				}  // end of ( non-empty array )
@@ -97,19 +97,19 @@ class Node {
 				$length = count($reflective_properties);
 				if (!$length) {
 					$out .=
-						'<span class="ivd_scalar ivd_inline">'
+						'<span class="ivd--scalar ivd-value-wrapper ivd--inline">'
 					.		'object('.$this->classname.') (0) '
-					.		'<span class="ivd_noncolor">{}</span>'
+					.		'<span class="ivd--noncolor">{}</span>'
 					.	'</span>'
 					;
 				}
 				else {
 					$out .=
-						'<span class="ivd_controller">'
+						'<span class="ivd--controller">'
 					.		'object('.$this->classname.') ('.$length.')'
 					.	'</span> '
 					.	'{'
-					.		'<span class="ivd_content">'
+					.		'<span class="ivd--content">'
 					;
 
 					foreach($reflective_properties as $property) {
@@ -121,17 +121,17 @@ class Node {
 						$ppp = '';
 						if ($property->isPrivate()) {
 							$key_string .= ':"'.$property->class.'":private';
-							$ppp = ' ivd_private';
+							$ppp = ' ivd--private';
 						}
 						elseif ($property->isProtected()) {
 							$key_string .= ':protected';
-							$ppp = ' ivd_protected';
+							$ppp = ' ivd--protected';
 						}
 						else {
-							$ppp = ' ivd_public';
+							$ppp = ' ivd--public';
 						}
 						if (!empty($key_string)) {
-							$key_string = '<span class="ivd_noncolor">'.$key_string.'</span>';
+							$key_string = '<span class="ivd--noncolor">'.$key_string.'</span>';
 						}
 						$key_string = '"'.$property->name.'"'.$key_string;
 
@@ -140,18 +140,18 @@ class Node {
 						$tmp = $property->getValue($this->obj);
 						$tmp = new Node($tmp);
 						$out .=
-							'<span class="ivd_item '.$ppp.'">'
-						.		'<span class="ivd_key">'
+							'<span class="ivd--item '.$ppp.'">'
+						.		'<span class="ivd--key">'
 						.			$key_string
 						.		'</span>'
-						.		'<span class="ivd_arrow">=></span>'
+						.		'<span class="ivd--arrow">=></span>'
 						.		$tmp->display()
-						.	'</span><!-- /.ivd_item -->'
+						.	'</span><!-- /.ivd--item -->'
 						;
 					}  // end of ( each property )
 
 					$out .=
-							'</span><!-- /.ivd_content -->'
+							'</span><!-- /.ivd--content -->'
 					.	'}'
 					;
 				}  // end of ( object has at least one property )
@@ -169,7 +169,7 @@ class Node {
 		 // *** Scalar – obj is as flat as a flunder ***
 		} else {
 
-			$styled_value = '<span class="ivd_value">'.$this->obj.'</span>';
+			$styled_value = '<span class="ivd--value">'.$this->obj.'</span>';
 
 			switch ($this->type) {
 
@@ -186,20 +186,20 @@ class Node {
 				break;
 
 				case "boolean":
-					$out .= 'bool(<span class="ivd_value">'.($this->obj  ? 'true'  : 'false').'</span>)';
+					$out .= 'bool(<span class="ivd--value">'.($this->obj  ? 'true'  : 'false').'</span>)';
 				break;
 
 				case NULL:
-					$out .= '<span class="ivd_value">NULL</span>';
+					$out .= '<span class="ivd--value">NULL</span>';
 				break;
 
 				default:
-					$out .= 'This is the type of scalars I have to deal with! '.$this->type;
+					$out .= 'Unsupported variable type: '.$this->type;
 				break;
 
 			}  // end of ( switch-case type )
 
-			$out = '<span class="ivd_scalar ivd_inline">'.$out.'</span>';
+			$out = '<span class="ivd--scalar ivd-value-wrapper ivd--inline">'.$out.'</span>';
 
 		}  // end of ( is flat )
 

@@ -1,0 +1,149 @@
+
+@import "variables";
+
+// TODO  bugfix. // Issues #1
+// Workaround: ignorable throwaway rule as first rule.
+body {
+	//background-color: orangered !important;
+	opacity: 1;
+}
+
+
+.ivd--tree {
+	/* Reset */
+	&,
+	span,
+	ul {
+		box-sizing: border-box;
+		position: static;
+		text-align: left;
+		color: $color-white;
+		background: none;
+		width: auto;
+		height: auto;
+		padding: 0;
+		margin: 0;
+		font-size: 10px;
+		line-height: 18px;
+		vertical-align: baseline;
+		visibility: visible;
+		opacity: 1;
+	}
+
+
+	& {
+		font-family: 'Verdana', 'Helvetica Neue', 'Helvetica', sans-serif;
+		background: $color-tree-bg;
+		padding: 20px;
+		margin: 13px 0;
+		box-shadow: 2px 2px 5px $color-tree-shade;
+		border-radius: 4px;
+		min-width: 400px;
+		overflow-x: auto;
+		z-index: 99999;
+		position: relative;
+	}
+
+	.ivd--item {
+		display: block;
+	}
+
+	.ivd--clickable {
+		cursor: pointer;
+		color: $color-link;
+		border-bottom: 1px solid $color-link;
+
+		&:hover {
+			border-bottom: 1px dotted $color-link;
+		}
+	}
+
+	.ivd--content {
+		margin-left: 10px;
+		display: block;
+	}
+
+	.ivd--collapsed {
+		text-overflow: ellipsis;
+		width: 9px;
+		height: 14px;
+		overflow: hidden;
+		display: inline-block;
+		margin-left: 0;
+
+		&::before {
+			content: "…";
+		}
+	}
+
+	.ivd--key {
+		color: $color-key;
+
+		&::before {
+			content: "[ ";
+			font-weight: bold;
+		}
+
+		&::after {
+			content: " ]";
+			font-weight: bold;
+		}
+	}
+
+
+	.ivd--value-wrapper {
+		color: $color-value-wrapper;
+	}
+
+	.ivd--value-wrapper,
+	.ivd--empty-thing {
+		display: block;
+	}
+
+	.ivd--inline {
+		display: inline;
+	}
+
+	.ivd--hidden {
+		display: none;
+	}
+
+	.ivd--arrow {
+		margin: 0 10px;
+	}
+
+	.ivd--value {
+		color: $color-value;
+		font-size: 12px;
+		margin: 0 1px;
+	}
+
+	.ivd--noncolor {
+		color: $color-white;
+	}
+
+	.ivd--overhead {
+		display: block;
+		margin: 0 0 15px;
+		overflow: auto;
+		list-style-type: none;
+		padding: 0;
+
+		li {
+			float: left;
+			line-height: 13px;
+			padding-left: 10px;
+			padding-right: 10px;
+			border-right: 1px solid $color-white;
+
+			&:first-child {
+				padding-left: 0;
+			}
+
+			&:last-child {
+				padding-right: 0;
+				border-right: 0;
+			}
+		}
+	}
+}  // end of ( .ivd--tree )

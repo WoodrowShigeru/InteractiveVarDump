@@ -2,7 +2,7 @@
 /**
  * InteractiveVarDump
  *
- * @copyright  "Copyright" © Apr - Jul 2o16, by Rafael Cieslik ( woodrow.shigeru@gmx.net )
+ * @copyright  "Copyright" © Apr - Jul 2o16, Mar 2o19, by Rafael Cieslik ( woodrow.shigeru@gmx.net )
  * @version    1.1.3
  */
 
@@ -33,7 +33,7 @@ if (TRUE === function_exists('ivd')) {
 			 // (in DEV environments).
 
 			echo '<style type="text/css">';
-				include "css/ivd.css";
+				include "css/style.css";
 			echo '</style>';
 
 			echo '<script type="text/javascript">';
@@ -41,7 +41,7 @@ if (TRUE === function_exists('ivd')) {
 			echo '</script>';
 
 			echo '<script type="text/javascript">';
-				include "js/ivd.js";
+				include "js/script.js";
 			echo '</script>';
 
 			$ivd_initialized = TRUE;
