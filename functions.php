@@ -12,7 +12,7 @@ require_once "classes/Tree.class.php";
 $ivd_initialized = FALSE;
 
 
-if (TRUE === function_exists('ivd')) {
+if (function_exists('ivd')) {
 	trigger_error('"ivd" function already exists. Could not initialize InteractiveVarDump.', E_USER_WARNING);
 
 } else {
@@ -62,7 +62,7 @@ if (TRUE === function_exists('ivd')) {
 }  // end of ( ivd didn't exist yet )
 
 
-if (TRUE === function_exists('qvd')) {
+if (function_exists('qvd')) {
 	trigger_error('"qvd" function already exists. Could not add shortcut.', E_USER_WARNING);
 
 } else {
