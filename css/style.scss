@@ -17,7 +17,7 @@ body {
 		box-sizing: border-box;
 		position: static;
 		text-align: left;
-		color: $color-white;
+		color: $color-text;
 		background: none;
 		width: auto;
 		height: auto;
@@ -50,12 +50,17 @@ body {
 
 	.ivd--clickable {
 		cursor: pointer;
-		color: $color-link;
-		border-bottom: 1px solid $color-link;
+		border-bottom: 1px solid $color-text;
 
 		&:hover {
-			border-bottom: 1px dotted $color-link;
+			border-bottom: 1px dotted $color-text;
 		}
+	}
+
+	&.ivd--color-mode-all .ivd--clickable,
+	&.ivd--color-mode-link .ivd--clickable {
+		color: $color-link;
+		border-bottom-color: $color-link;
 	}
 
 	.ivd--content {
@@ -77,8 +82,6 @@ body {
 	}
 
 	.ivd--key {
-		color: $color-key;
-
 		&::before {
 			content: "[ ";
 			font-weight: bold;
@@ -90,8 +93,12 @@ body {
 		}
 	}
 
+	&.ivd--color-mode-all .ivd--key {
+		color: $color-key;
+	}
 
-	.ivd--value-wrapper {
+
+	&.ivd--color-mode-all .ivd--value-wrapper {
 		color: $color-value-wrapper;
 	}
 
@@ -113,13 +120,16 @@ body {
 	}
 
 	.ivd--value {
-		color: $color-value;
 		font-size: 12px;
 		margin: 0 1px;
 	}
 
+	&.ivd--color-mode-all .ivd--value {
+		color: $color-value;
+	}
+
 	.ivd--noncolor {
-		color: $color-white;
+		color: $color-text;
 	}
 
 	.ivd--overhead {
@@ -134,7 +144,7 @@ body {
 			line-height: 13px;
 			padding-left: 10px;
 			padding-right: 10px;
-			border-right: 1px solid $color-white;
+			border-right: 1px solid $color-text;
 
 			&:first-child {
 				padding-left: 0;

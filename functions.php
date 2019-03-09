@@ -21,10 +21,10 @@ if (function_exists('ivd')) {
 	*
 	* @param $subject mixed  The to-dump variable.
 	* @param $pretext string  Optional message to prefix the dump with.
-	* @param $getter boolean  If set to true, will return the tree as an object rather than print it.
+	* @param $config array  Optional configuration array for further control. See docs for further info.
 	* @return $object|NULL  Depending on getter parameter.
 	*/
-	function ivd( $subject, $pretext = FALSE, $getter = FALSE ) {
+	function ivd( $subject, $pretext = FALSE, array $config = NULL ) {
 
 		global $ivd_initialized;
 
@@ -51,8 +51,23 @@ if (function_exists('ivd')) {
 			echo $pretext .':<br />';
 		}
 
-		$tree = new InteractiveVarDump\Tree($subject);
-		if ($getter) {
+		// normalize config.
+		if (!isset($config)) {
+			$config = array();
+		}
+		if (!array_key_exists('return', $config)) {
+			$config['return'] = FALSE;
+		}
+		if (!array_key_exists('color', $config)) {
+			$config['color'] = 'all';
+		}
+		if (!array_key_exists('max_depth', $config)) {
+			$config['max_depth'] = 10;
+		}
+
+
+		$tree = new InteractiveVarDump\Tree($subject, $config);
+		if ($config['return']) {
 			return $tree->get();
 
 		} else {

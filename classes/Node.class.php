@@ -8,12 +8,13 @@ class Node {
 	private $classname = NULL;
 	private $obj = NULL;
 	private $is_flat = true;	// = scalar or NULL
+	private $current_depth = 0;
 
 
 
 	//=============== CONSTRUCTOR ===============//
 
-	public function __construct( $subject ) {
+	public function __construct( $subject, $max_depth = 10, $current_depth = 0 ) {
 
 		if (isset($subject)) {
 			$this->type = gettype($subject);
@@ -26,6 +27,8 @@ class Node {
 		$this->obj = $subject;
 
 		$this->is_flat = is_scalar($subject)  ||  !isset($subject);
+
+		$this->current_depth = $current_depth;
 	}
 
 
