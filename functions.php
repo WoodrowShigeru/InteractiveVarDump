@@ -3,7 +3,7 @@
  * InteractiveVarDump
  *
  * @copyright  "Copyright" © Apr - Jul 2o16, by Rafael Cieslik ( woodrow.shigeru@gmx.net )
- * @version    1.1.2
+ * @version    1.1.3
  */
 
 require_once "InteractiveVarDump_Tree.class.php";

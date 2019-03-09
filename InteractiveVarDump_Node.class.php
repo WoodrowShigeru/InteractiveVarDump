@@ -9,9 +9,9 @@ class InteractiveVarDump_Node {
 
 
 
-	//==== CONSTRUCTOR ====//
+	//=============== CONSTRUCTOR ===============//
 
-	public function InteractiveVarDump_Node( $subject ) {
+	public function __construct( $subject ) {
 
 		if (isset($subject)) {
 			$this->type = gettype($subject);
@@ -29,7 +29,7 @@ class InteractiveVarDump_Node {
 
 
 
-	//==== METHODS ====//
+	//=============== METHODS ===============//
 
 	public function display() {
 
@@ -208,7 +208,7 @@ class InteractiveVarDump_Node {
 
 
 
-	//==== GETTERS/SETTERS ====//
+	//=============== GETTERS/SETTERS ===============//
 
 	public function get_object() {
 		return $this->obj;
@@ -225,6 +225,5 @@ class InteractiveVarDump_Node {
 	public function are_you_flat() {
 		return $this->is_flat;
 	}
-
 
 }  // end of ( CLASS "InteractiveVarDump_Node" )

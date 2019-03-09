@@ -2,13 +2,14 @@
 
 require_once "InteractiveVarDump_Node.class.php";
 
+
 class InteractiveVarDump_Tree {
 
 	private $root = NULL;
 
 
 
-	//==== CONSTRUCTOR ====//
+	//=============== CONSTRUCTOR ===============//
 
 	public function InteractiveVarDump_Tree( $subject ) {
 
@@ -18,7 +19,7 @@ class InteractiveVarDump_Tree {
 
 
 
-	//==== METHODS ====//
+	//=============== METHODS ===============//
 
 	public function display() {
 
@@ -28,12 +29,11 @@ class InteractiveVarDump_Tree {
 
 
 
-	//==== GETTERS/SETTERS ====//
+	//=============== GETTERS/SETTERS ===============//
 
 	public function get() {
 
 		return $this->root;
 	}
-
 
 }  // end of ( CLASS "InteractiveVarDump_Tree" )
