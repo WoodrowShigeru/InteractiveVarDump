@@ -79,6 +79,6 @@ if (function_exists('qvd')) {
 			echo $pretext .':<br />';
 		}
 
-		echo '<pre>'; var_dump($subject); echo '</pre><br />';
+		echo '<pre style="white-space: pre-wrap;">'; var_dump($subject); echo '</pre><br />';
 	}
 }
