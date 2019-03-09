@@ -6,7 +6,7 @@
  * @version    1.1.3
  */
 
-require_once "InteractiveVarDump_Tree.class.php";
+require_once "classes/Tree.class.php";
 
 
 $ivd_initialized = FALSE;
@@ -21,15 +21,15 @@ function ivd( $subject, $pretext = FALSE, $getter = FALSE ) {
 		 // (in DEV environments).
 
 		echo '<style type="text/css">';
-			include "ivd.css";
+			include "css/ivd.css";
 		echo '</style>';
 
 		echo '<script type="text/javascript">';
-			include "jquery.js";
+			include "js/jquery.js";
 		echo '</script>';
 
 		echo '<script type="text/javascript">';
-			include "ivd.js";
+			include "js/ivd.js";
 		echo '</script>';
 
 		$ivd_initialized = TRUE;
@@ -39,7 +39,7 @@ function ivd( $subject, $pretext = FALSE, $getter = FALSE ) {
 		echo $pretext .':<br />';
 	}
 
-	$tree = new InteractiveVarDump_Tree($subject);
+	$tree = new InteractiveVarDump\Tree($subject);
 	if ($getter) {
 		return $tree->get();
 
