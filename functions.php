@@ -16,6 +16,14 @@ if (TRUE === function_exists('ivd')) {
 	trigger_error('"ivd" function already exists. Could not initialize InteractiveVarDump.', E_USER_WARNING);
 
 } else {
+	/**
+	* Dumps a given variable in an interactive tree; for debugging convenience.
+	*
+	* @param $subject mixed  The to-dump variable.
+	* @param $pretext string  Optional message to prefix the dump with.
+	* @param $getter boolean  If set to true, will return the tree as an object rather than print it.
+	* @return $object|NULL  Depending on getter parameter.
+	*/
 	function ivd( $subject, $pretext = FALSE, $getter = FALSE ) {
 
 		global $ivd_initialized;
@@ -58,6 +66,13 @@ if (TRUE === function_exists('qvd')) {
 	trigger_error('"qvd" function already exists. Could not add shortcut.', E_USER_WARNING);
 
 } else {
+	/**
+	* Simple and quick shortcut for the native var_dump method, but wrapped in ‹pre› tags.
+	*
+	* @param $subject mixed  The to-dump variable.
+	* @param $pretext string  Optional message to prefix the dump with.
+	* @return NULL
+	*/
 	function qvd( $subject, $pretext = FALSE ) {
 
 		if ($pretext) {
