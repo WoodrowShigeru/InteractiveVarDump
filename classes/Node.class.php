@@ -8,6 +8,7 @@ class Node {
 	private $classname = NULL;
 	private $obj = NULL;
 	private $is_flat = true;	// = scalar or NULL
+	private $max_depth = 10;
 	private $current_depth = 0;
 
 
@@ -28,6 +29,7 @@ class Node {
 
 		$this->is_flat = is_scalar($subject)  ||  !isset($subject);
 
+		$this->max_depth = $max_depth;
 		$this->current_depth = $current_depth;
 	}
 
@@ -39,6 +41,12 @@ class Node {
 	public function display() {
 
 		$out = '';
+		$limit_text =
+			'<span class="ivd--alert ivd--alert-danger">'
+		.		'Maximal depth reached. Aborting. <br />'
+		.		'See docs for modifying `max_depth` value.'
+		.	'</span>'
+		;
 
 		if (!$this->is_flat) {
 			 // *** Array ***
@@ -59,20 +67,28 @@ class Node {
 					.		'array('.$length.')'
 					.	'</span> '
 					.	'{'
-					.		'<span class="ivd--content">'
+					.		'<span class="ivd--content"'
+					.		' data-depth="'. $this->current_depth .'">'
 					;
 
-					foreach($this->obj as $key => $element) {
-						$tmp = new Node($element);
-						$out .=
-							'<span class="ivd--item">'
-						.		'<span class="ivd--key">'
-						.			(is_integer($key)  ? $key  : '"'.$key.'"')
-						.		'</span>'
-						.		'<span class="ivd--arrow">=></span>'
-						.		$tmp->display()
-						.	'</span><!-- /.ivd--item -->'
-						;
+					 // prevent too deep nestings.
+					if ($this->current_depth >= $this->max_depth) {
+						$out .= $limit_text;
+
+					} else {
+						foreach($this->obj as $key => $element) {
+
+							$tmp = new Node($element, $this->max_depth, ($this->current_depth +1));
+							$out .=
+								'<span class="ivd--item">'
+							.		'<span class="ivd--key">'
+							.			(is_integer($key)  ? $key  : '"'.$key.'"')
+							.		'</span>'
+							.		'<span class="ivd--arrow">=></span>'
+							.		$tmp->display()
+							.	'</span><!-- /.ivd--item -->'
+							;
+						}
 					}
 
 					$out .=
@@ -112,46 +128,52 @@ class Node {
 					.		'object('.$this->classname.') ('.$length.')'
 					.	'</span> '
 					.	'{'
-					.		'<span class="ivd--content">'
+					.		'<span class="ivd--content"'
+					.		' data-depth="'. $this->current_depth .'">'
 					;
 
-					foreach($reflective_properties as $property) {
-						 // make protected and private properties readable.
-						$property->setAccessible(true);
+					 // prevent too deep nestings.
+					if ($this->current_depth >= $this->max_depth) {
+						$out .= $limit_text;
 
-						 // prepare key string.
-						$key_string = '';
-						$ppp = '';
-						if ($property->isPrivate()) {
-							$key_string .= ':"'.$property->class.'":private';
-							$ppp = ' ivd--private';
-						}
-						elseif ($property->isProtected()) {
-							$key_string .= ':protected';
-							$ppp = ' ivd--protected';
-						}
-						else {
-							$ppp = ' ivd--public';
-						}
-						if (!empty($key_string)) {
-							$key_string = '<span class="ivd--noncolor">'.$key_string.'</span>';
-						}
-						$key_string = '"'.$property->name.'"'.$key_string;
+					} else {
+						foreach($reflective_properties as $property) {
+							 // make protected and private properties readable.
+							$property->setAccessible(true);
 
+							 // prepare key string.
+							$key_string = '';
+							$ppp = '';
+							if ($property->isPrivate()) {
+								$key_string .= ':"'.$property->class.'":private';
+								$ppp = ' ivd--private';
+							}
+							elseif ($property->isProtected()) {
+								$key_string .= ':protected';
+								$ppp = ' ivd--protected';
+							}
+							else {
+								$ppp = ' ivd--public';
+							}
+							if (!empty($key_string)) {
+								$key_string = '<span class="ivd--noncolor">'.$key_string.'</span>';
+							}
+							$key_string = '"'.$property->name.'"'.$key_string;
 
-						 // apply "ivd value" structure and display the value recursively (could be an object).
-						$tmp = $property->getValue($this->obj);
-						$tmp = new Node($tmp);
-						$out .=
-							'<span class="ivd--item '.$ppp.'">'
-						.		'<span class="ivd--key">'
-						.			$key_string
-						.		'</span>'
-						.		'<span class="ivd--arrow">=></span>'
-						.		$tmp->display()
-						.	'</span><!-- /.ivd--item -->'
-						;
-					}  // end of ( each property )
+							 // apply "ivd value" structure and display the value recursively (could be an object).
+							$tmp = $property->getValue($this->obj);
+							$tmp = new Node($tmp, $this->max_depth, ($this->current_depth +1));
+							$out .=
+								'<span class="ivd--item '.$ppp.'">'
+							.		'<span class="ivd--key">'
+							.			$key_string
+							.		'</span>'
+							.		'<span class="ivd--arrow">=></span>'
+							.		$tmp->display()
+							.	'</span><!-- /.ivd--item -->'
+							;
+						}  // end of ( each property )
+					}  // end of ( depth allowed )
 
 					$out .=
 							'</span><!-- /.ivd--content -->'
@@ -164,8 +186,14 @@ class Node {
 			} else {
 				$out .= 'unexpected type: '. $this->type;
 
-				$tmp = new Node($this->obj);
-				$out .= $tmp->display();
+				 // prevent too deep nestings.
+				if ($this->current_depth >= $this->max_depth) {
+					$out .= $limit_text;
+
+				} else {
+					$tmp = new Node($this->obj, $this->max_depth, ($this->current_depth +1));
+					$out .= $tmp->display();
+				}
 			}
 
 

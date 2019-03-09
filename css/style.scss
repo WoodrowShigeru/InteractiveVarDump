@@ -115,6 +115,21 @@ body {
 		display: none;
 	}
 
+	.ivd--alert {
+		display: inline-block;
+		position: relative;
+		padding: 10px 15px;
+		margin: 5px;
+		border: 1px solid transparent;
+		border-radius: 4px;
+	}
+
+	.ivd--alert-danger {
+		color: $color-alert-danger-text;
+		background-color: $color-alert-danger-bg;
+		border-color: $color-alert-danger-border;
+	}
+
 	.ivd--arrow {
 		margin: 0 10px;
 	}
