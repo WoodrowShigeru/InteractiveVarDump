@@ -8,5 +8,5 @@ NOTE: Does not work with some data types, i.e.:
 
 ## How to use
 - `require` or `include` "InteractiveVarDump/functions.php" into your working environment
-- call `ivd( $any_object );`
-- optionally add a string: `ivd( $any_object, 'This is $any_object' );`
+- call `ivd( $any_var );`
+- optionally add a string: `ivd( $any_object, 'This is $any_var' );`
