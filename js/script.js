@@ -102,9 +102,9 @@
 						html +=
 								'<li class="ivd--batch-collapse">batch-collapse</li>'
 						+   '<li class="ivd--batch-expand">batch-expand</li>'
-						+ '</ul><!-- /.ivd--overhead -->'
 						;
 					}
+					html += '</ul><!-- /.ivd--overhead -->';
 
 					tree.prepend(html);
 				}
