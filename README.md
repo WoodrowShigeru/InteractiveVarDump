@@ -31,4 +31,4 @@ Option | Type | Default | Description
 ------ | ---- | ------- | -----------
 `return` | Boolean | `FALSE` | Set to `TRUE` in order to get the tree as a return value instead.
 `color` | String | `"all"` | If neither the key/value nor the link colorization is for you, you can deactivate those colors granularly: [ `all`, `link`, `none` ].
-`max_depth` | Integer | `10` | By default, a check for too deep nesting prevents a crash. Modify the depth to your needs.
+`max_depth` | Integer | `10` | By default, a check for too deep nesting is implemented in order to prevent a fatal exception for circular object references. Modify the depth to your needs.
