@@ -22,7 +22,7 @@ if (function_exists('ivd')) {
 	 * @param $subject mixed  The to-dump variable.
 	 * @param $pretext string  Optional message to prefix the dump with.
 	 * @param $config array  Optional configuration array for further control. See docs for further info.
-	 * @return $object|NULL  Depending on getter parameter.
+	 * @return $object|null  Depending on getter parameter.
 	 */
 	function ivd( $subject, $pretext = FALSE, array $config = NULL ) {
 
@@ -86,7 +86,7 @@ if (function_exists('qvd')) {
 	 *
 	 * @param $subject mixed  The to-dump variable.
 	 * @param $pretext string  Optional message to prefix the dump with.
-	 * @return NULL
+	 * @return null
 	 */
 	function qvd( $subject, $pretext = FALSE ) {
 
