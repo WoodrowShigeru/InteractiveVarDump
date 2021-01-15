@@ -205,7 +205,14 @@ class Node {
 			switch ($this->type) {
 
 				case "string":
-					$out .= 'string('.strlen($this->obj).') "'.$styled_value.'"';
+					$len = strlen($this->obj);
+					$len_entity_test = strlen(html_entity_decode($this->obj));
+
+					$out .= 'string('.$len.') "'.$styled_value.'"';
+
+					if ($len !== $len_entity_test) {
+						$out .= ' (HTML-entity detected)';
+					}
 				break;
 
 				case "integer":
