@@ -2,8 +2,8 @@
 /**
  * InteractiveVarDump
  *
- * @copyright  "Copyright" © Apr - Jul 2o16, Mar 2o19, by Rafael Cieslik ( woodrow.shigeru@gmx.net )
- * @version    1.1.3
+ * @copyright  "Copyright" © Apr - Jul 2016, Mar 2019, Jan 2021, by Rafael Cieslik ( woodrow.shigeru@gmx.net )
+ * @version    1.2.2
  */
 
 require_once "classes/Tree.class.php";
@@ -17,13 +17,13 @@ if (function_exists('ivd')) {
 
 } else {
 	/**
-	* Dumps a given variable in an interactive tree; for debugging convenience.
-	*
-	* @param $subject mixed  The to-dump variable.
-	* @param $pretext string  Optional message to prefix the dump with.
-	* @param $config array  Optional configuration array for further control. See docs for further info.
-	* @return $object|NULL  Depending on getter parameter.
-	*/
+	 * Dumps a given variable in an interactive tree; for debugging convenience.
+	 *
+	 * @param $subject mixed  The to-dump variable.
+	 * @param $pretext string  Optional message to prefix the dump with.
+	 * @param $config array  Optional configuration array for further control. See docs for further info.
+	 * @return $object|NULL  Depending on getter parameter.
+	 */
 	function ivd( $subject, $pretext = FALSE, array $config = NULL ) {
 
 		global $ivd_initialized;
@@ -82,12 +82,12 @@ if (function_exists('qvd')) {
 
 } else {
 	/**
-	* Simple and quick shortcut for the native var_dump method, but wrapped in ‹pre› tags.
-	*
-	* @param $subject mixed  The to-dump variable.
-	* @param $pretext string  Optional message to prefix the dump with.
-	* @return NULL
-	*/
+	 * Simple and quick shortcut for the native var_dump method, but wrapped in ‹pre› tags.
+	 *
+	 * @param $subject mixed  The to-dump variable.
+	 * @param $pretext string  Optional message to prefix the dump with.
+	 * @return NULL
+	 */
 	function qvd( $subject, $pretext = FALSE ) {
 
 		if ($pretext) {
