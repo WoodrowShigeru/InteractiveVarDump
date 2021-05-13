@@ -2,8 +2,8 @@
 /**
  * InteractiveVarDump
  *
- * @copyright  "Copyright" © Apr - Jul 2016, Mar 2019, Jan 2021, by Rafael Cieslik ( woodrow.shigeru@gmx.net )
- * @version    1.2.2
+ * @copyright  "Copyright" © Apr - Jul 2016, Mar 2019, Jan 2021, May 2021, by Rafael Cieslik ( woodrow.shigeru@gmx.net )
+ * @version    1.2.3
  */
 
 require_once "classes/Tree.class.php";

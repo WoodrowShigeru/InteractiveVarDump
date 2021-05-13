@@ -206,7 +206,7 @@ class Node {
 
 				case "string":
 					$len = strlen($this->obj);
-					$len_entity_test = strlen(html_entity_decode($this->obj));
+					$len_entity_test = strlen(html_entity_decode($this->obj, ENT_QUOTES));
 
 					$out .= 'string('.$len.') "'.$styled_value.'"';
 
