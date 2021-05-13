@@ -3,7 +3,7 @@ An interactive alternative to PHP's native `var_dump()` function, insofar as it 
 
 ![Example dump](example.png)
 
-NOTE: Does not work with some data types, i.e.:
+*NOTE:* Does not work with some data types, i.e.:
 - objects of the class `DOMDocument` due to a bug in the Reflection framework: https://bugs.php.net/bug.php?id=48527
 - `RecursiveDirectoryIterator`
 
@@ -23,6 +23,9 @@ Link | Functionality
 `toggle-show private properties` | Recursively show or hide all private properties.
 `batch-collapse` | Collapse all child and grandchild objects and arrays; but not the root.
 `batch-expand` | Expands all child and grandchild objects and arrays.
+
+*NOTE:* The tool automatically detects and marks strings if they contain HTML-entities: compare how, although being displayed in the browser as "Kirby's Dream Course", the string value is actually "Kirby\&#39;s Dream Course".
+
 
 ## Extended Usage
 Optionally, you can add a config-style array as a third parameter for some light extra functionality.
