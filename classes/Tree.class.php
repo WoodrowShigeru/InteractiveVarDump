@@ -13,6 +13,7 @@ class Tree {
 	private $root = NULL;
 	private $color_mode = self::COLOR_MODE_ALL;
 	private $max_depth = 10;
+	private $indent = 0;
 
 
 
@@ -22,6 +23,7 @@ class Tree {
 
 		$this->max_depth = $config['max_depth'];
 		$this->color_mode = $config['color'];
+		$this->indent = $config['indent'];
 
 		$this->root = new Node($subject, $this->max_depth, 0);
 	}
@@ -35,6 +37,7 @@ class Tree {
 
 		$classes = array('ivd--tree');
 
+		// colors.
 		switch ($this->color_mode) {
 			case self::COLOR_MODE_NONE:
 				array_push($classes, 'ivd--color-mode-none');
@@ -49,6 +52,15 @@ class Tree {
 				array_push($classes, 'ivd--color-mode-all');
 				break;
 		}
+
+		// indentation.
+		if (
+			($this->indent >= 1)
+		&&	($this->indent <= 20)
+		) {
+			array_push($classes, 'ivd--indent-level-' .$this->indent);
+		}
+
 
 		return sprintf(
 			'<div class="%s">%s</div><!-- /.ivd--tree -->',

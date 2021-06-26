@@ -1,4 +1,6 @@
+
 # InteractiveVarDump
+
 An interactive alternative to PHP's native `var_dump()` function, insofar as it lets you collapse and expand the individual children.
 
 ![Example dump](example.png)
@@ -8,7 +10,9 @@ An interactive alternative to PHP's native `var_dump()` function, insofar as it 
 - `RecursiveDirectoryIterator`
 
 
+
 ## Basic Usage
+
 - `require` or `include` the file `InteractiveVarDump/functions.php` into your working environment.
 - Call `ivd( $any_var );`.
 - Optionally add a string: `ivd( $any_object, 'This is $any_var' );`.
@@ -27,11 +31,15 @@ Link | Functionality
 *NOTE:* The tool automatically detects and marks strings if they contain HTML-entities: compare how, although being displayed in the browser as "Kirby's Dream Course", the string value is actually "Kirby\&#39;s Dream Course".
 
 
+
 ## Extended Usage
+
 Optionally, you can add a config-style array as a third parameter for some light extra functionality.
 
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
-`return` | Boolean | `FALSE` | Set to `TRUE` in order to get the tree as a return value instead.
-`color` | String | `"all"` | If neither the key/value nor the link colorization is for you, you can deactivate those colors granularly: [ `all`, `link`, `none` ].
-`max_depth` | Integer | `10` | By default, a check for too deep nesting is implemented in order to prevent a fatal exception for circular object references. Modify the depth to your needs.
+`return` | boolean | `FALSE` | Set to `TRUE` in order to get the tree as a return value instead.
+`color` | string | `all` | If neither the key/value nor the link colorization is for you, you can deactivate those colors granularly: [ `all`, `link`, `none` ].
+`max_depth` | integer | `10` | By default, a check for too deep nesting is implemented in order to prevent a fatal exception for circular object references. Modify the depth to your needs.
+`indent` | integer | `0` | Indentation level. Indent the box in increments of 15px; supports up to 20.
+

@@ -33,7 +33,7 @@ if (function_exists('ivd')) {
 			 // (in DEV environments).
 
 			echo '<style type="text/css">';
-				include "css/style.css";
+				include "css/style.min.css";
 			echo '</style>';
 
 			echo '<script type="text/javascript">';
@@ -63,6 +63,13 @@ if (function_exists('ivd')) {
 		}
 		if (!array_key_exists('max_depth', $config)) {
 			$config['max_depth'] = 10;
+		}
+		if (
+			!array_key_exists('indent', $config)
+		||	!is_integer($config['indent'])
+		||	($config['indent'] < 1)
+		) {
+			$config['indent'] = 0;
 		}
 
 

@@ -1,10 +1,9 @@
 
 @import "variables";
 
-// TODO  bugfix. // Issues #1
-// Workaround: ignorable throwaway rule as first rule.
-body {
-	//background-color: orangered !important;
+// See for more info:
+// https://github.com/WoodrowShigeru/InteractiveVarDump/issues/1
+.ignorable-first-rule-due-to-utf8-bom-shenanigans {
 	opacity: 1;
 }
 
@@ -145,6 +144,14 @@ body {
 
 	.ivd--noncolor {
 		color: $color-text;
+	}
+
+	// indentations.
+	$levels: (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+	@each $level in $levels {
+		&.ivd--indent-level-#{$level} {
+			margin-left: $level * 15px;
+		}
 	}
 
 	.ivd--overhead {
