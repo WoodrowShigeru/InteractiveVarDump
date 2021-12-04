@@ -14,6 +14,7 @@ class Tree {
 	private $color_mode = self::COLOR_MODE_ALL;
 	private $max_depth = 10;
 	private $indent = 0;
+	private $plz_start_collapsed = FALSE;
 
 
 
@@ -22,6 +23,7 @@ class Tree {
 	public function __construct( $subject, $config ) {
 
 		$this->max_depth = $config['max_depth'];
+		$this->plz_start_collapsed = $config['start_collapsed'];
 
 		// indent.
 		if (
@@ -52,6 +54,10 @@ class Tree {
 	public function display() {
 
 		$classes = array('ivd__tree');
+
+		if ($this->plz_start_collapsed) {
+			array_push($classes, 'ivd--start-collapsed');
+		}
 
 		return sprintf(
 			'<div class="%s"

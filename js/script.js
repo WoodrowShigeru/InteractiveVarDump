@@ -113,8 +113,9 @@
 				 // comfort-wrap for CSS.
 				$('.ivd__controller, .ivd__overhead li', tree).wrapInner('<span class="ivd--clickable"></span>');
 
-			//	$('.ivd--').each(() => {});
-
+				if (tree.is('.ivd--start-collapsed')) {
+					tree.find('.ivd__controller:first').trigger('click');
+				}
 
 			});  // end of ( init trees )
 

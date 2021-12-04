@@ -3,7 +3,7 @@
  * InteractiveVarDump
  *
  * @copyright  "Copyright" © Apr - Jul 2016, Mar 2019, Jan 2021, May 2021, by Rafael Cieslik ( woodrow.shigeru@gmx.net )
- * @version    1.2.3
+ * @version    1.2.5
  */
 
 require_once "classes/Tree.class.php";
@@ -70,6 +70,9 @@ if (function_exists('ivd')) {
 		||	($config['indent'] < 1)
 		) {
 			$config['indent'] = 0;
+		}
+		if (!array_key_exists('start_collapsed', $config)) {
+			$config['start_collapsed'] = FALSE;
 		}
 
 
