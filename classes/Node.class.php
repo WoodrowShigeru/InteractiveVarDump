@@ -42,7 +42,7 @@ class Node {
 
 		$out = '';
 		$limit_text =
-			'<span class="ivd--alert ivd--alert-danger">'
+			'<span class="ivd__alert  ivd__alert--danger">'
 		.		'Maximal depth reached. Aborting. <br />'
 		.		'See docs for modifying `max_depth` value.'
 		.	'</span>'
@@ -55,7 +55,7 @@ class Node {
 				$length = count($this->obj);
 				if (!$length) {
 					$out .=
-						'<span class="ivd--scalar ivd--value-wrapper ivd--inline">'
+						'<span class="ivd__scalar  ivd__value-wrapper  ivd--inline">'
 					.		'array(0) '
 					.		'<span class="ivd--noncolor">{}</span>'
 					.	'</span>'
@@ -63,11 +63,11 @@ class Node {
 				}
 				else {
 					$out .=
-						'<span class="ivd--controller">'
+						'<span class="ivd__controller">'
 					.		'array('.$length.')'
 					.	'</span> '
 					.	'{'
-					.		'<span class="ivd--content"'
+					.		'<span class="ivd__content"'
 					.		' data-depth="'. $this->current_depth .'">'
 					;
 
@@ -80,19 +80,19 @@ class Node {
 
 							$tmp = new Node($element, $this->max_depth, ($this->current_depth +1));
 							$out .=
-								'<span class="ivd--item">'
-							.		'<span class="ivd--key">'
+								'<span class="ivd__item">'
+							.		'<span class="ivd__key">'
 							.			(is_integer($key)  ? $key  : '"'.$key.'"')
 							.		'</span>'
-							.		'<span class="ivd--arrow">=></span>'
+							.		'<span class="ivd__arrow">=></span>'
 							.		$tmp->display()
-							.	'</span><!-- /.ivd--item -->'
+							.	'</span><!-- /.ivd__item -->'
 							;
 						}
 					}
 
 					$out .=
-							'</span><!-- /.ivd--content -->'
+							'</span><!-- /.ivd__content -->'
 					.	'}'
 					;
 				}  // end of ( non-empty array )
@@ -116,7 +116,7 @@ class Node {
 				$length = count($reflective_properties);
 				if (!$length) {
 					$out .=
-						'<span class="ivd--scalar ivd--value-wrapper ivd--inline">'
+						'<span class="ivd__scalar  ivd__value-wrapper  ivd--inline">'
 					.		'object('.$this->classname.') (0) '
 					.		'<span class="ivd--noncolor">{}</span>'
 					.	'</span>'
@@ -124,11 +124,11 @@ class Node {
 				}
 				else {
 					$out .=
-						'<span class="ivd--controller">'
+						'<span class="ivd__controller">'
 					.		'object('.$this->classname.') ('.$length.')'
 					.	'</span> '
 					.	'{'
-					.		'<span class="ivd--content"'
+					.		'<span class="ivd__content"'
 					.		' data-depth="'. $this->current_depth .'">'
 					;
 
@@ -146,14 +146,14 @@ class Node {
 							$ppp = '';
 							if ($property->isPrivate()) {
 								$key_string .= ':"'.$property->class.'":private';
-								$ppp = ' ivd--private';
+								$ppp = '  ivd--private';
 							}
 							elseif ($property->isProtected()) {
 								$key_string .= ':protected';
-								$ppp = ' ivd--protected';
+								$ppp = '  ivd--protected';
 							}
 							else {
-								$ppp = ' ivd--public';
+								$ppp = '  ivd--public';
 							}
 							if (!empty($key_string)) {
 								$key_string = '<span class="ivd--noncolor">'.$key_string.'</span>';
@@ -164,19 +164,19 @@ class Node {
 							$tmp = $property->getValue($this->obj);
 							$tmp = new Node($tmp, $this->max_depth, ($this->current_depth +1));
 							$out .=
-								'<span class="ivd--item '.$ppp.'">'
-							.		'<span class="ivd--key">'
+								'<span class="ivd__item  '.$ppp.'">'
+							.		'<span class="ivd__key">'
 							.			$key_string
 							.		'</span>'
-							.		'<span class="ivd--arrow">=></span>'
+							.		'<span class="ivd__arrow">=></span>'
 							.		$tmp->display()
-							.	'</span><!-- /.ivd--item -->'
+							.	'</span><!-- /.ivd__item -->'
 							;
 						}  // end of ( each property )
 					}  // end of ( depth allowed )
 
 					$out .=
-							'</span><!-- /.ivd--content -->'
+							'</span><!-- /.ivd__content -->'
 					.	'}'
 					;
 				}  // end of ( object has at least one property )
@@ -200,7 +200,7 @@ class Node {
 		 // *** Scalar – obj is as flat as a flunder ***
 		} else {
 
-			$styled_value = '<span class="ivd--value">'.$this->obj.'</span>';
+			$styled_value = '<span class="ivd__value">'.$this->obj.'</span>';
 
 			switch ($this->type) {
 
@@ -224,11 +224,11 @@ class Node {
 				break;
 
 				case "boolean":
-					$out .= 'bool(<span class="ivd--value">'.($this->obj  ? 'true'  : 'false').'</span>)';
+					$out .= 'bool(<span class="ivd__value">'.($this->obj  ? 'true'  : 'false').'</span>)';
 				break;
 
 				case NULL:
-					$out .= '<span class="ivd--value">NULL</span>';
+					$out .= '<span class="ivd__value">NULL</span>';
 				break;
 
 				default:
@@ -237,7 +237,7 @@ class Node {
 
 			}  // end of ( switch-case type )
 
-			$out = '<span class="ivd--scalar ivd--value-wrapper ivd--inline">'.$out.'</span>';
+			$out = '<span class="ivd__scalar  ivd__value-wrapper  ivd--inline">'.$out.'</span>';
 
 		}  // end of ( is flat )
 

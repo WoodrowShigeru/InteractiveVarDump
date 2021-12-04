@@ -8,7 +8,7 @@
 }
 
 
-.ivd--tree {
+.ivd__tree {
 	/* Reset */
 	&,
 	span,
@@ -43,7 +43,7 @@
 		position: relative;
 	}
 
-	.ivd--item {
+	.ivd__item {
 		display: block;
 	}
 
@@ -56,13 +56,13 @@
 		}
 	}
 
-	&.ivd--color-mode-all .ivd--clickable,
-	&.ivd--color-mode-link .ivd--clickable {
+	&[data-ivd-color-mode="all"] .ivd--clickable,
+	&[data-ivd-color-mode="link"] .ivd--clickable {
 		color: $color-link;
 		border-bottom-color: $color-link;
 	}
 
-	.ivd--content {
+	.ivd__content {
 		margin-left: 10px;
 		display: block;
 	}
@@ -80,7 +80,7 @@
 		}
 	}
 
-	.ivd--key {
+	.ivd__key {
 		&::before {
 			content: "[ ";
 			font-weight: bold;
@@ -92,17 +92,17 @@
 		}
 	}
 
-	&.ivd--color-mode-all .ivd--key {
+	&[data-ivd-color-mode="all"] .ivd__key {
 		color: $color-key;
 	}
 
 
-	&.ivd--color-mode-all .ivd--value-wrapper {
+	&[data-ivd-color-mode="all"] .ivd__value-wrapper {
 		color: $color-value-wrapper;
 	}
 
-	.ivd--value-wrapper,
-	.ivd--empty-thing {
+	.ivd__value-wrapper,
+	.ivd__empty-thing {
 		display: block;
 	}
 
@@ -114,7 +114,7 @@
 		display: none;
 	}
 
-	.ivd--alert {
+	.ivd__alert {
 		display: inline-block;
 		position: relative;
 		padding: 10px 15px;
@@ -123,22 +123,22 @@
 		border-radius: 4px;
 	}
 
-	.ivd--alert-danger {
+	.ivd__alert--danger {
 		color: $color-alert-danger-text;
 		background-color: $color-alert-danger-bg;
 		border-color: $color-alert-danger-border;
 	}
 
-	.ivd--arrow {
+	.ivd__arrow {
 		margin: 0 10px;
 	}
 
-	.ivd--value {
+	.ivd__value {
 		font-size: 12px;
 		margin: 0 1px;
 	}
 
-	&.ivd--color-mode-all .ivd--value {
+	&[data-ivd-color-mode="all"] .ivd__value {
 		color: $color-value;
 	}
 
@@ -149,12 +149,12 @@
 	// indentations.
 	$levels: (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
 	@each $level in $levels {
-		&.ivd--indent-level-#{$level} {
+		&[data-ivd-indent-level="#{$level}"] {
 			margin-left: $level * 15px;
 		}
 	}
 
-	.ivd--overhead {
+	.ivd__overhead {
 		display: block;
 		margin: 0 0 15px;
 		overflow: auto;
@@ -178,4 +178,4 @@
 			}
 		}
 	}
-}  // end of ( .ivd--tree )
+}  // end of ( .ivd__tree )

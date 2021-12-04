@@ -2,10 +2,10 @@
 
 	$(document)
 		 // overhead: inline togglers
-		.on('click', '.ivd--toggle-inline', function(e){
+		.on('click', '.ivd__toggle-inline', function(e){
 			var
-				tree = $(this).closest('.ivd--tree'),
-				inliners = $('.ivd--scalar', tree)
+				tree = $(this).closest('.ivd__tree'),
+				inliners = $('.ivd__scalar', tree)
 			;
 			if (inliners.first().is('.ivd--inline')) {
 				inliners.removeClass('ivd--inline');
@@ -16,9 +16,9 @@
 
 
 		 // overhead: protected property togglers
-		.on('click', '.ivd--toggle-protected-properties', function(e){
+		.on('click', '.ivd__toggle-protected-properties', function(e){
 			var
-				tree = $(this).closest('.ivd--tree'),
+				tree = $(this).closest('.ivd__tree'),
 				set = $('.ivd--protected', tree)
 			;
 			if (set.first().is('.ivd--hidden')) {
@@ -30,9 +30,9 @@
 
 
 		 // overhead: private property togglers
-		.on('click', '.ivd--toggle-private-properties', function(e){
+		.on('click', '.ivd__toggle-private-properties', function(e){
 			var
-				tree = $(this).closest('.ivd--tree'),
+				tree = $(this).closest('.ivd__tree'),
 				set = $('.ivd--private', tree)
 			;
 			if (set.first().is('.ivd--hidden')) {
@@ -44,28 +44,28 @@
 
 
 		 // overhead: batch-collaps0rs (but exclude root-lvl-content)
-		.on('click', '.ivd--batch-collapse', function(e){
+		.on('click', '.ivd__batch-collapse', function(e){
 			var
-				tree = $(this).closest('.ivd--tree')
+				tree = $(this).closest('.ivd__tree')
 			;
-			$('.ivd--item .ivd--content', tree).addClass('ivd--collapsed');
+			$('.ivd__item .ivd__content', tree).addClass('ivd--collapsed');
 		})
 
 
 		 // overhead: batch-expand0rs (but exclude root-lvl-content)
-		.on('click', '.ivd--batch-expand', function(e){
+		.on('click', '.ivd__batch-expand', function(e){
 			var
-				tree = $(this).closest('.ivd--tree')
+				tree = $(this).closest('.ivd__tree')
 			;
-			$('.ivd--item .ivd--content', tree).removeClass('ivd--collapsed');
+			$('.ivd__item .ivd__content', tree).removeClass('ivd--collapsed');
 		})
 
 
 		 // depth controllers
-		.on('click', '.ivd--controller', function(e){
+		.on('click', '.ivd__controller', function(e){
 			var
 				controller = $(this),
-				content = controller.nextAll('.ivd--content:first')
+				content = controller.nextAll('.ivd__content:first')
 			;
 
 			if (content.is('.ivd--collapsed')) {
@@ -79,39 +79,41 @@
 		.ready(function(){
 
 			 // overhead controllers.
-			$('.ivd--tree').each(function(){
+			$('.ivd__tree').each(function(){
 				var
 					tree = $(this),
 					html = ''
 				;
 
 				 // only add the overhead to items with complexity (depth).
-				if (tree.find('.ivd--key').length) {
+				if (tree.find('.ivd__key').length) {
 					html =
-						'<ul class="ivd--overhead">'
-					+   '<li class="ivd--toggle-inline">toggle-break inline</li>'
+						'<ul class="ivd__overhead">'
+					+   '<li class="ivd__toggle-inline">toggle-break inline</li>'
 					;
 					if ( $('.ivd--protected', tree).length ) {
-						html += '<li class="ivd--toggle-protected-properties">toggle-show protected properties</li>';
+						html += '<li class="ivd__toggle-protected-properties">toggle-show protected properties</li>';
 					}
 
 					if ( $('.ivd--private', tree).length ) {
-						html += '<li class="ivd--toggle-private-properties">toggle-show private properties</li>';
+						html += '<li class="ivd__toggle-private-properties">toggle-show private properties</li>';
 					}
-					if ( $('.ivd--content .ivd--controller', tree).length ) {
+					if ( $('.ivd__content .ivd__controller', tree).length ) {
 						html +=
-								'<li class="ivd--batch-collapse">batch-collapse</li>'
-						+   '<li class="ivd--batch-expand">batch-expand</li>'
+								'<li class="ivd__batch-collapse">batch-collapse</li>'
+						+   '<li class="ivd__batch-expand">batch-expand</li>'
 						;
 					}
-					html += '</ul><!-- /.ivd--overhead -->';
+					html += '</ul><!-- /.ivd__overhead -->';
 
 					tree.prepend(html);
 				}
 
 
 				 // comfort-wrap for CSS.
-				$('.ivd--controller, .ivd--overhead li', tree).wrapInner('<span class="ivd--clickable"></span>');
+				$('.ivd__controller, .ivd__overhead li', tree).wrapInner('<span class="ivd--clickable"></span>');
+
+			//	$('.ivd--').each(() => {});
 
 
 			});  // end of ( init trees )
