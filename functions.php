@@ -32,16 +32,18 @@ if (function_exists('ivd')) {
 			 // apply necessary includes. Doesn't matter where in the DOM you are
 			 // (in DEV environments).
 
+			$dir = dirname(__FILE__) .'/';
+
 			echo '<style type="text/css">';
-				include "css/style.min.css";
+			include $dir .'css/style.min.css';
 			echo '</style>';
 
 			echo '<script type="text/javascript">';
-				include "js/jquery.js";
+				include $dir .'js/jquery.js';
 			echo '</script>';
 
 			echo '<script type="text/javascript">';
-				include "js/script.js";
+				include $dir .'js/script.js';
 			echo '</script>';
 
 			$ivd_initialized = TRUE;
