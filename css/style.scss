@@ -93,7 +93,9 @@
 	}
 
 	&[data-ivd-color-mode="all"] .ivd__key {
-		color: $color-key;
+		&, .ivd__key-core {
+			color: $color-key;
+		}
 	}
 
 

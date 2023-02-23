@@ -77,12 +77,18 @@ class Node {
 
 					} else {
 						foreach($this->obj as $key => $element) {
+							$key_string = sprintf(
+								'%s<span class="ivd__key-core">%s</span>%s',
+								is_integer($key)  ? ''  : '"',
+								$key,
+								is_integer($key)  ? ''  : '"'
+							);
 
 							$tmp = new Node($element, $this->max_depth, ($this->current_depth +1));
 							$out .=
 								'<span class="ivd__item">'
-							.		'<span class="ivd__key">'
-							.			(is_integer($key)  ? $key  : '"'.$key.'"')
+							.		'<span class="ivd__key" data-type="array-key">'
+							.			$key_string
 							.		'</span>'
 							.		'<span class="ivd__arrow">=></span>'
 							.		$tmp->display()
@@ -158,14 +164,16 @@ class Node {
 							if (!empty($key_string)) {
 								$key_string = '<span class="ivd--noncolor">'.$key_string.'</span>';
 							}
-							$key_string = '"'.$property->name.'"'.$key_string;
 
 							 // apply "ivd value" structure and display the value recursively (could be an object).
 							$tmp = $property->getValue($this->obj);
 							$tmp = new Node($tmp, $this->max_depth, ($this->current_depth +1));
 							$out .=
 								'<span class="ivd__item  '.$ppp.'">'
-							.		'<span class="ivd__key">'
+							.		'<span class="ivd__key" data-type="object-prop">'
+							.			'"<span class="ivd__key-core">'
+							.				$property->name
+							.			'</span>"'
 							.			$key_string
 							.		'</span>'
 							.		'<span class="ivd__arrow">=></span>'

@@ -76,6 +76,29 @@
 		})
 
 
+		 // rccleanup -- new feature: key , path , traverse up
+		.on('click', '.ivd__key', (ev) => {
+			let
+				$self = $(ev.currentTarget),
+				parents = $self.parents('.ivd__item').get(),
+				path = 'root'
+			;
+			parents.reverse();
+
+			parents.forEach((item) => {
+				let
+					$key = $('.ivd__key:first', item),
+					type = $key.attr('data-type'),
+					text = $key.find('.ivd__key-core').text()
+				;
+				path += type === 'array-key'   ? `['${text}']`   : `->${text}`;
+			});
+
+			console.log('key-clicked.', path);
+			// TODO  great. Now display nicely, plz.
+		})
+
+
 		.ready(function(){
 
 			 // overhead controllers.
