@@ -1,55 +1,5 @@
-;let IVD = (function($){
+;(function($){
 	// TODO  add change-log.
-	let
-		app = {}
-	;
-
-	/**
-	 * TODO jsdoc
-	 *
-	 * @since version 1.2.7
-	 * @param string|HTMLElement|jQueryCollection deep_el
-	 * @returns string
-	 */
-	app.show_path = ( deep_el ) => {
-		let
-			$self = $(deep_el)
-		;
-		if ($self.length !== 1) {
-			return;
-		}
-
-		$self.closest('.ivd__tree').find('.ivd__injected-notice').remove();
-
-		let
-			$prepend_here = $self.parent('.ivd__item'),
-			parents = $self.parents('.ivd__item').get(),
-			path = 'root'
-		;
-		parents.reverse();
-
-		parents.forEach((item) => {
-			let
-				$key = $('.ivd__key:first', item),
-				type = $key.attr('data-type'),
-				text = $key.find('.ivd__key-core').text()
-			;
-			path += type === 'array-key'   ? `['${text}']`   : `->${text}`;
-		});
-
-
-		// inject.
-		$prepend_here.prepend(
-			`<span class="ivd__injected-notice  ivd--dismissable">
-				<span class="ivd__injected-notice-bubble">
-					<span class="ivd__injected-notice-text">${path}</span>
-					<span class="ivd__dismiss">&times;</span>
-				</span>
-			</span>`
-		);
-	};
-
-
 
 	$(document)
 		 // dismiss things.
@@ -140,11 +90,37 @@
 		})
 
 
-		 // rccleanup -- new feature: key , path , traverse up
-		 // TODO  on-click core rather.
-		.on('click', '.ivd__key', (ev) => {
-			app.show_path(ev.currentTarget);
-		})
+		// show path of potentially deep elements.
+		.on('click', '.ivd__key-core', (ev) => {
+			let
+				$self = $(ev.currentTarget).closest('.ivd__key'),
+				$prepend_here = $self.parent('.ivd__item'),
+				parents = $self.parents('.ivd__item').get(),
+				path = 'root'
+			;
+			$self.closest('.ivd__tree').find('.ivd__injected-notice').remove();
+			parents.reverse();
+
+			parents.forEach((item) => {
+				let
+					$key = $('.ivd__key:first', item),
+					type = $key.attr('data-type'),
+					text = $key.find('.ivd__key-core').text()
+				;
+				path += type === 'array-key'   ? `['${text}']`   : `->${text}`;
+			});
+
+
+			// inject.
+			$prepend_here.prepend(
+				`<span class="ivd__injected-notice  ivd--dismissable">
+					<span class="ivd__injected-notice-bubble">
+						<span class="ivd__injected-notice-text">${path}</span>
+						<span class="ivd__dismiss">&times;</span>
+					</span>
+				</span>`
+			);
+		})  // end of ( on-click key )
 
 
 		.ready(function(){
@@ -193,8 +169,5 @@
 
 		})  //__ end of ( READY )
 	;  // end of ( document )
-
-
-	return app;
 
 }(jQuery));
