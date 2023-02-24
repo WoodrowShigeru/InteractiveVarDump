@@ -1,4 +1,5 @@
 ;let IVD = (function($){
+	// TODO  add change-log.
 	let
 		app = {}
 	;
@@ -36,10 +37,14 @@
 			path += type === 'array-key'   ? `['${text}']`   : `->${text}`;
 		});
 
+
+		// inject.
 		$prepend_here.prepend(
 			`<span class="ivd__injected-notice  ivd--dismissable">
-				<span class="ivd__injected-notice-text">${path}</span>
-				<span class="ivd__dismiss">&times;</span>
+				<span class="ivd__injected-notice-bubble">
+					<span class="ivd__injected-notice-text">${path}</span>
+					<span class="ivd__dismiss">&times;</span>
+				</span>
 			</span>`
 		);
 	};

@@ -58,8 +58,6 @@
 	}
 
 	.ivd__dismiss {
-		$base: 1rem;
-
 		display: inline-block;
 		position: absolute;
 		z-index: 2;
@@ -69,9 +67,9 @@
 		// reset nonsense!
 		box-sizing: content-box !important;
 
-		width: 2 * $base;
-		height: $base;
-		line-height: $base;
+		width: 2 * $dismiss-base;
+		height: $dismiss-base;
+		line-height: $dismiss-base;
 		text-align: center;
 		font-weight: bold;
 		border-radius: $border-radius;
@@ -215,24 +213,28 @@
 	}
 
 	.ivd__injected-notice {
-		$base: 10px;
 
 		display: block;
 		position: relative;
+		margin-top: 0.75rem;
+		margin-bottom: $notice-base;
+	}
+
+	.ivd__injected-notice-bubble {
+		display: inline-flex;
+		column-gap: 0.75rem;
 		background-color: $color-notice;
 		border-radius: $border-radius;
 		padding: 0.125rem 0.5rem;
-		margin-top: 0.75rem;
-		margin-bottom: $base;
 
 		&::after {
 			content: '';
 			display: block;
 			position: absolute;
 			z-index: 1;
-			left: $base;
-			bottom: -2 * $base;
-			border: $base solid transparent;
+			left: $notice-base;
+			bottom: -2 * $notice-base;
+			border: $notice-base solid transparent;
 			border-top-color: $color-notice;
 		}
 	}
@@ -242,8 +244,13 @@
 		color: $color-tree-bg;
 	}
 
-	.ivd__injected-notice .ivd__dismiss:hover {
-		border-color: $color-tree-bg;
+	.ivd__injected-notice .ivd__dismiss {
+		position: static;
+		width: $dismiss-base;
+
+		&:hover {
+			border-color: $color-tree-bg;
+		}
 	}
 
 }  // end of ( .ivd__tree )
