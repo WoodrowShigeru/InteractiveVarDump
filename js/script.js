@@ -1,4 +1,48 @@
-(function($){
+;let IVD = (function($){
+	let
+		app = {}
+	;
+
+	/**
+	 * TODO jsdoc
+	 *
+	 * @since version 1.2.7
+	 * @param string|HTMLElement|jQueryCollection deep_el
+	 * @returns string
+	 */
+	app.show_path = ( deep_el ) => {
+		let
+			$self = $(deep_el)
+		;
+		if (!$self.length) {
+			return;
+		}
+
+		$self.closest('.ivd__tree').find('.ivd__injected-notice').remove();
+
+		let
+			$prepend_here = $self.parent('.ivd__item'),
+			parents = $self.parents('.ivd__item').get(),
+			path = 'root'
+		;
+		parents.reverse();
+
+		parents.forEach((item) => {
+			let
+				$key = $('.ivd__key:first', item),
+				type = $key.attr('data-type'),
+				text = $key.find('.ivd__key-core').text()
+			;
+			path += type === 'array-key'   ? `['${text}']`   : `->${text}`;
+		});
+
+		console.log('key-clicked.', path);
+		// TODO  great. Now display nicely, plz.
+
+		$prepend_here.prepend(`<span class="ivd__injected-notice">${path}</span>`);
+	};
+
+
 
 	$(document)
 		 // overhead: inline togglers
@@ -77,25 +121,9 @@
 
 
 		 // rccleanup -- new feature: key , path , traverse up
+		 // TODO  on-click core rather.
 		.on('click', '.ivd__key', (ev) => {
-			let
-				$self = $(ev.currentTarget),
-				parents = $self.parents('.ivd__item').get(),
-				path = 'root'
-			;
-			parents.reverse();
-
-			parents.forEach((item) => {
-				let
-					$key = $('.ivd__key:first', item),
-					type = $key.attr('data-type'),
-					text = $key.find('.ivd__key-core').text()
-				;
-				path += type === 'array-key'   ? `['${text}']`   : `->${text}`;
-			});
-
-			console.log('key-clicked.', path);
-			// TODO  great. Now display nicely, plz.
+			app.show_path(ev.currentTarget);
 		})
 
 
@@ -145,5 +173,8 @@
 
 		})  //__ end of ( READY )
 	;  // end of ( document )
+
+
+	return app;
 
 }(jQuery));
