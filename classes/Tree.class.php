@@ -53,7 +53,7 @@ class Tree {
 
 	public function display() {
 
-		$classes = array('ivd__tree');
+		$classes = array('ivd__tree  ivd--dismissable');
 
 		if ($this->plz_start_collapsed) {
 			array_push($classes, 'ivd--start-collapsed');
@@ -63,7 +63,10 @@ class Tree {
 			'<div class="%s"
 				data-ivd-color-mode="%s"
 				data-ivd-indent-level="%d"
-			>%s</div><!-- /.ivd__tree -->',
+			>
+				<span class="ivd__dismiss">&times;</span>
+				%s
+			</div><!-- /.ivd__tree -->',
 
 			implode('  ', $classes),
 			$this->color_mode,

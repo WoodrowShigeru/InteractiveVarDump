@@ -14,7 +14,7 @@
 		let
 			$self = $(deep_el)
 		;
-		if (!$self.length) {
+		if ($self.length !== 1) {
 			return;
 		}
 
@@ -36,15 +36,30 @@
 			path += type === 'array-key'   ? `['${text}']`   : `->${text}`;
 		});
 
-		console.log('key-clicked.', path);
-		// TODO  great. Now display nicely, plz.
-
-		$prepend_here.prepend(`<span class="ivd__injected-notice">${path}</span>`);
+		$prepend_here.prepend(
+			`<span class="ivd__injected-notice  ivd--dismissable">
+				<span class="ivd__injected-notice-text">${path}</span>
+				<span class="ivd__dismiss">&times;</span>
+			</span>`
+		);
 	};
 
 
 
 	$(document)
+		 // dismiss things.
+		.on('click', '.ivd__dismiss', (ev) => {
+			let
+				$dismissable = $(ev.currentTarget).closest('.ivd--dismissable')
+			;
+			if (!$dismissable.length) {
+				return;
+			}
+
+			$dismissable.remove();
+		})
+
+
 		 // overhead: inline togglers
 		.on('click', '.ivd__toggle-inline', function(e){
 			var

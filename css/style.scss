@@ -30,6 +30,7 @@
 	}
 
 
+	// written like this, or else the reset overwrites these values.
 	& {
 		font-family: 'Verdana', 'Helvetica Neue', 'Helvetica', sans-serif;
 		background: $color-tree-bg;
@@ -53,6 +54,32 @@
 
 		&:hover {
 			border-bottom: 1px dotted $color-text;
+		}
+	}
+
+	.ivd__dismiss {
+		$base: 1rem;
+
+		display: inline-block;
+		position: absolute;
+		z-index: 2;
+		top: 0.25rem;
+		right: 0.25rem;
+
+		// reset nonsense!
+		box-sizing: content-box !important;
+
+		width: 2 * $base;
+		height: $base;
+		line-height: $base;
+		text-align: center;
+		font-weight: bold;
+		border-radius: $border-radius;
+		border: 1px dashed transparent;
+		cursor: pointer;
+
+		&:hover {
+			border-color: $color-text;
 		}
 	}
 
@@ -194,7 +221,6 @@
 		position: relative;
 		background-color: $color-notice;
 		border-radius: $border-radius;
-		color: $color-tree-bg;
 		padding: 0.125rem 0.5rem;
 		margin-top: 0.75rem;
 		margin-bottom: $base;
@@ -209,6 +235,15 @@
 			border: $base solid transparent;
 			border-top-color: $color-notice;
 		}
+	}
+
+	.ivd__injected-notice-text,
+	.ivd__injected-notice .ivd__dismiss {
+		color: $color-tree-bg;
+	}
+
+	.ivd__injected-notice .ivd__dismiss:hover {
+		border-color: $color-tree-bg;
 	}
 
 }  // end of ( .ivd__tree )
