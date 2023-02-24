@@ -1,8 +1,9 @@
-;(function($){
+;(function( $ ) {
 	// TODO  add change-log.
+	// TODO  nocolors × new features (dismiss, show-path).
 
 	$(document)
-		 // dismiss things.
+		// dismiss things.
 		.on('click', '.ivd__dismiss', (ev) => {
 			let
 				$dismissable = $(ev.currentTarget).closest('.ivd--dismissable')
@@ -15,77 +16,80 @@
 		})
 
 
-		 // overhead: inline togglers
-		.on('click', '.ivd__toggle-inline', function(e){
-			var
-				tree = $(this).closest('.ivd__tree'),
-				inliners = $('.ivd__scalar', tree)
+		// overhead: inline togglers.
+		.on('click', '.ivd__toggle-inline', (ev) => {
+			let
+				$inliners = $(ev.currentTarget).closest('.ivd__tree')
+					.find('.ivd__scalar')
 			;
-			if (inliners.first().is('.ivd--inline')) {
-				inliners.removeClass('ivd--inline');
+			if ($inliners.first().is('.ivd--inline')) {
+				$inliners.removeClass('ivd--inline');
+
 			} else {
-				inliners.addClass('ivd--inline');
+				$inliners.addClass('ivd--inline');
 			}
 		})
 
 
-		 // overhead: protected property togglers
-		.on('click', '.ivd__toggle-protected-properties', function(e){
-			var
-				tree = $(this).closest('.ivd__tree'),
-				set = $('.ivd--protected', tree)
+		// overhead: protected property togglers.
+		.on('click', '.ivd__toggle-protected-properties', (ev) => {
+			let
+				$set = $(ev.currentTarget).closest('.ivd__tree')
+					.find('.ivd--protected')
 			;
-			if (set.first().is('.ivd--hidden')) {
-				set.removeClass('ivd--hidden');
+			if ($set.first().is('.ivd--hidden')) {
+				$set.removeClass('ivd--hidden');
+
 			} else {
-				set.addClass('ivd--hidden');
+				$set.addClass('ivd--hidden');
 			}
 		})
 
 
-		 // overhead: private property togglers
-		.on('click', '.ivd__toggle-private-properties', function(e){
-			var
-				tree = $(this).closest('.ivd__tree'),
-				set = $('.ivd--private', tree)
+		// overhead: private property togglers.
+		// TODO  broken.
+		.on('click', '.ivd__toggle-private-properties', (ev) => {
+			let
+				$set = $(ev.currentTarget).closest('.ivd__tree')
+					.find('.ivd--private')
 			;
-			if (set.first().is('.ivd--hidden')) {
-				set.removeClass('ivd--hidden');
+			if ($set.first().is('.ivd--hidden')) {
+				$set.removeClass('ivd--hidden');
+
 			} else {
-				set.addClass('ivd--hidden');
+				$set.addClass('ivd--hidden');
 			}
 		})
 
 
-		 // overhead: batch-collaps0rs (but exclude root-lvl-content)
-		.on('click', '.ivd__batch-collapse', function(e){
-			var
-				tree = $(this).closest('.ivd__tree')
+		// overhead: batch-collaps0rs (but exclude root-lvl-content).
+		.on('click', '.ivd__batch-collapse', (ev) => {
+
+			$(ev.currentTarget).closest('.ivd__tree')
+				.find('.ivd__item .ivd__content').addClass('ivd--collapsed')
 			;
-			$('.ivd__item .ivd__content', tree).addClass('ivd--collapsed');
 		})
 
 
-		 // overhead: batch-expand0rs (but exclude root-lvl-content)
-		.on('click', '.ivd__batch-expand', function(e){
-			var
-				tree = $(this).closest('.ivd__tree')
+		// overhead: batch-expand0rs (but exclude root-lvl-content).
+		.on('click', '.ivd__batch-expand', (ev) => {
+
+			$(ev.currentTarget).closest('.ivd__tree')
+				.find('.ivd__item .ivd__content').removeClass('ivd--collapsed')
 			;
-			$('.ivd__item .ivd__content', tree).removeClass('ivd--collapsed');
 		})
 
 
-		 // depth controllers
-		.on('click', '.ivd__controller', function(e){
-			var
-				controller = $(this),
-				content = controller.nextAll('.ivd__content:first')
+		// depth controllers.
+		.on('click', '.ivd__controller', (ev) => {
+			let
+				$content = $(ev.currentTarget).nextAll('.ivd__content:first')
 			;
+			if ($content.is('.ivd--collapsed')) {
+				$content.removeClass('ivd--collapsed');
 
-			if (content.is('.ivd--collapsed')) {
-				content.removeClass('ivd--collapsed');
 			} else {
-				content.addClass('ivd--collapsed');
+				$content.addClass('ivd--collapsed');
 			}
 		})
 
@@ -123,45 +127,51 @@
 		})  // end of ( on-click key )
 
 
-		.ready(function(){
+		.ready((ready_ev) => {
 
-			 // overhead controllers.
-			$('.ivd__tree').each(function(){
-				var
-					tree = $(this),
-					html = ''
+			// overhead controllers.
+			// TODO  SOMETING DA BROKEN!
+			$('.ivd__tree').each((index, tree) => {
+				let
+					$tree = $(tree),
+					html = []
 				;
-
-				 // only add the overhead to items with complexity (depth).
-				if (tree.find('.ivd__key').length) {
-					html =
-						'<ul class="ivd__overhead">'
-					+   '<li class="ivd__toggle-inline">toggle-break inline</li>'
-					;
-					if ( $('.ivd--protected', tree).length ) {
-						html += '<li class="ivd__toggle-protected-properties">toggle-show protected properties</li>';
+				// only add the overhead to items with complexity (depth).
+				if ($tree.find('.ivd__key').length) {
+					html.push(
+						'<ul class="ivd__overhead">',
+							'<li class="ivd__toggle-inline">toggle-break inline</li>'
+					);
+					if ($tree.find('.ivd--protected').length) {
+						html.push(
+							'<li class="ivd__toggle-protected-properties">toggle-show protected properties</li>'
+						);
 					}
 
-					if ( $('.ivd--private', tree).length ) {
-						html += '<li class="ivd__toggle-private-properties">toggle-show private properties</li>';
+					if ($tree.find('.ivd--private').length) {
+						html.push(
+							'<li class="ivd__toggle-private-properties">toggle-show private properties</li>'
+						);
 					}
-					if ( $('.ivd__content .ivd__controller', tree).length ) {
-						html +=
-								'<li class="ivd__batch-collapse">batch-collapse</li>'
-						+   '<li class="ivd__batch-expand">batch-expand</li>'
-						;
+					if ($tree.find('.ivd__content .ivd__controller').length) {
+						html.push(
+							'<li class="ivd__batch-collapse">batch-collapse</li>',
+							'<li class="ivd__batch-expand">batch-expand</li>'
+						);
 					}
-					html += '</ul><!-- /.ivd__overhead -->';
+					html.push('</ul><!-- /.ivd__overhead -->');
 
-					tree.prepend(html);
+					$tree.prepend(html);
 				}
 
 
-				 // comfort-wrap for CSS.
-				$('.ivd__controller, .ivd__overhead li', tree).wrapInner('<span class="ivd--clickable"></span>');
+				// comfort-wrap for CSS.
+				$tree.find('.ivd__controller, .ivd__overhead li')
+					.wrapInner('<span class="ivd--clickable"></span>')
+				;
 
-				if (tree.is('.ivd--start-collapsed')) {
-					tree.find('.ivd__controller:first').trigger('click');
+				if ($tree.is('.ivd--start-collapsed')) {
+					$tree.find('.ivd__controller:first').trigger('click');
 				}
 
 			});  // end of ( init trees )
