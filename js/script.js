@@ -13,6 +13,10 @@ $(document)
 			return;
 		}
 
+		if ($dismissable.is('.ivd__tree[data-ivd-connect="z-indexer"]')) {
+			$('#ivd__z-indexer').remove();
+		}
+
 		$dismissable.remove();
 	})
 
@@ -140,6 +144,13 @@ $(document)
 			$z_indexer = $('#ivd__z-indexer'),
 			$tree = $(ev.currentTarget).closest('.ivd__tree')
 		;
+		// special case: dismiss self.
+		if ($tree.is('[data-ivd-connect="z-indexer"]')) {
+			$('#ivd__z-indexer').remove();
+			$tree.removeAttr('data-ivd-connect');
+			return;
+		}
+
 		if (!$z_indexer.length) {
 			$body.append(
 				`<div id="ivd__z-indexer" class="ivd--dismissable">
@@ -163,6 +174,10 @@ $(document)
 		$tree.attr('data-ivd-connect', 'z-indexer');
 
 	})  // end of ( on-click z-indexer-start )
+
+
+	// // dismiss extra stuff #1.
+	// .on('click', '.ivd__z-indexer-start', (ev) => {})  // end of ( on-click z-indexer-start )
 
 
 	.ready((ready_ev) => {

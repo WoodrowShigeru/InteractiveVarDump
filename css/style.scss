@@ -127,6 +127,11 @@
 		}
 	}
 
+	&[data-ivd-color-mode="all"][data-ivd-connect="z-indexer"] .ivd__z-indexer-start {
+		color: $color-value-wrapper;
+		border-color: $color-value-wrapper;
+	}
+
 	&[data-ivd-color-mode="none"] {
 		.ivd__dismiss:hover,
 		.ivd__z-indexer-start:hover,
