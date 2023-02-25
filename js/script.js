@@ -142,19 +142,46 @@ $(document)
 		;
 		if (!$z_indexer.length) {
 			$body.append(
-				`<div id="ivd__z-indexer">
+				`<div id="ivd__z-indexer" class="ivd--dismissable">
+					<span class="ivd__dismiss">&times;</span>
 					<span class="ivd__label">Mousewheel</span>
 					<input type="text" name="ivd__z_indexer" class="ivd__form-control" />
 				</div>`
 			);
 			$z_indexer = $('#ivd__z-indexer');
-
-			$z_indexer.find('[name="ivd__z_indexer"]').val(
-				$tree.css('z-index')
-			);
 		}
 
+
+		$z_indexer.find('[name="ivd__z_indexer"]').val(
+			$tree.css('z-index')
+		);
+
+		// TODO  +temp-id.
+
 	})  // end of ( on-click z-indexer-start )
+
+
+	// // test: operate z-indexer.
+	// .on('wheel', '#ivd__z-indexer-start', (ev) => {
+	// 	console.log('delta oer someth', ev);
+
+	// 	let
+	// 		$z_indexer = $('#ivd__z-indexer'),
+	// 		$tree = $('.ivd__tree').eq(2)
+	// 	;
+	// 	if (!$z_indexer.length || !$tree.length) {
+	// 		return;
+	// 	}
+
+	// 	let
+	// 		z_index = $z_indexer.find('[name="ivd__z_indexer"]').val()
+	// 	;
+
+	// 	$z_indexer.find('[name="ivd__z_indexer"]').val(
+	// 		$tree.css('z-index', z_index)
+	// 	);
+
+	// })  // end of ( on-click z-indexer-start )
 
 
 	.ready((ready_ev) => {
@@ -209,5 +236,47 @@ $(document)
 
 	})  //__ end of ( READY )
 ;  // end of ( document )
+
+
+window.addEventListener('wheel', (ev) => {
+	let
+		$z_indexer = $('#ivd__z-indexer'),
+		$tree = $('.ivd__tree').eq(2)
+	;
+	if (
+		!$z_indexer.length
+	||	!$tree.length
+	||	!$(ev.target).closest($z_indexer).length
+	) {
+		return;
+	}
+
+
+	console.log('delta oer someth', ev);
+
+	let
+		z_index = Number($z_indexer.find('[name="ivd__z_indexer"]').val())
+	;
+	if (Number.isNaN(z_index)) {
+		z_index = 0;
+	}
+
+	z_index += ev.wheelDelta;
+	console.log('z_index', z_index);
+
+	$tree.css('z-index', z_index);
+
+	$z_indexer.find('[name="ivd__z_indexer"]').val(z_index);
+
+	ev.preventDefault();
+	ev.stopPropagation();
+	return false;
+
+}, { passive: false });
+
+//	// test: operate z-indexer.
+//	.on('wheel', '#ivd__z-indexer-start', )  // end of ( on-click z-indexer-start )
+
+
 
 }(jQuery));
