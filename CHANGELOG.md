@@ -1,7 +1,7 @@
 
 # Change Log
 
-## 1.2.7 or 1.3.0
+## 1.3.0
 *(ø)*
 
 * Added: click key to show path of deep node.
@@ -10,6 +10,7 @@
 * Added change-log file.
 * Bugfix: batch-expand purposefully but erroneously excluded the top-level node.
 * Added `box` value to replace previous `none` behavior for `color` configuration, and made `none` truly disable colors (except for alerts).
+* Added composer.
 
 
 　​

@@ -1,6 +1,7 @@
 ;(function( $ ) {
-// TODO  nocolors × new features (dismiss, show-path).
-// TODO  add composer.
+
+// TODO  phpdoc to Node and Tree methods, and classes themselves.
+
 
 $(document)
 	// dismiss things.

@@ -2,6 +2,7 @@
 
 namespace InteractiveVarDump;
 
+
 class Node {
 
 	private $type = NULL;
@@ -274,3 +275,4 @@ class Node {
 	}
 
 }  // end of ( CLASS "Node" )
+

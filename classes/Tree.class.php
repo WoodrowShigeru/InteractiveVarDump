@@ -2,8 +2,6 @@
 
 namespace InteractiveVarDump;
 
-require_once "Node.class.php";
-
 
 class Tree {
 	const COLOR_MODE_ALL	= 'all';
@@ -88,3 +86,4 @@ class Tree {
 	}
 
 }  // end of ( CLASS "Tree" )
+

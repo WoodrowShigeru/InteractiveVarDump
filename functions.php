@@ -7,7 +7,9 @@
  * @version 1.3.0
  */
 
-require_once "classes/Tree.class.php";
+use InteractiveVarDump\Tree;
+
+require_once dirname(__FILE__) .'/vendor/autoload.php';
 
 
 $ivd_initialized = FALSE;
@@ -23,6 +25,7 @@ if (function_exists('ivd')) {
 	 * @param $subject mixed  The to-dump variable.
 	 * @param $pretext string  Optional message to prefix the dump with.
 	 * @param $config array  Optional configuration array for further control. See docs for further info.
+	 *
 	 * @return $object|null  Depending on getter parameter.
 	 */
 	function ivd( $subject, $pretext = FALSE, array $config = NULL ) {
@@ -79,7 +82,7 @@ if (function_exists('ivd')) {
 		}
 
 
-		$tree = new InteractiveVarDump\Tree($subject, $config);
+		$tree = new Tree($subject, $config);
 		if ($config['return']) {
 			return $tree->get();
 
@@ -99,6 +102,7 @@ if (function_exists('qvd')) {
 	 *
 	 * @param $subject mixed  The to-dump variable.
 	 * @param $pretext string  Optional message to prefix the dump with.
+	 *
 	 * @return null
 	 */
 	function qvd( $subject, $pretext = FALSE ) {
@@ -110,3 +114,4 @@ if (function_exists('qvd')) {
 		echo '<pre style="white-space: pre-wrap;">'; var_dump($subject); echo '</pre><br />';
 	}
 }
+
