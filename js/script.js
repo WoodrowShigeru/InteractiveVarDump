@@ -129,8 +129,7 @@
 
 		.ready((ready_ev) => {
 
-			// overhead controllers.
-			// TODO  SOMETING DA BROKEN!
+			// build overhead controllers.
 			$('.ivd__tree').each((index, tree) => {
 				let
 					$tree = $(tree),
@@ -161,7 +160,7 @@
 					}
 					html.push('</ul><!-- /.ivd__overhead -->');
 
-					$tree.prepend(html);
+					$tree.prepend(html.join(''));
 				}
 
 
