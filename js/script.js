@@ -62,20 +62,22 @@ $(document)
 	})
 
 
-	// overhead: batch-collaps0rs (but exclude root-lvl-content).
+	// overhead: batch-collaps0rs.
 	.on('click', '.ivd__batch-collapse', (ev) => {
 
 		$(ev.currentTarget).closest('.ivd__tree')
+			// exclude root-lvl-content.
 			.find('.ivd__item .ivd__content').addClass('ivd--collapsed')
 		;
 	})
 
 
-	// overhead: batch-expand0rs (but exclude root-lvl-content).
+	// overhead: batch-expand0rs.
 	.on('click', '.ivd__batch-expand', (ev) => {
 
 		$(ev.currentTarget).closest('.ivd__tree')
-			.find('.ivd__item .ivd__content').removeClass('ivd--collapsed')
+			// include root-lvl-content.
+			.find('.ivd__content.ivd--collapsed').removeClass('ivd--collapsed')
 		;
 	})
 
@@ -102,9 +104,13 @@ $(document)
 			parents = $self.parents('.ivd__item').get(),
 			path = 'root'
 		;
+		// reset.
 		$self.closest('.ivd__tree').find('.ivd__injected-notice').remove();
+
+		// we went up but we are writing LTR.
 		parents.reverse();
 
+		// traverse, process.
 		parents.forEach((item) => {
 			let
 				$key = $('.ivd__key:first', item),

@@ -8,6 +8,7 @@
 * Refactor: mildly modernized JavaScript code.
 * Added dismiss feature.
 * Added change-log file.
+* Bugfix: batch-expand purposefully but erroneously excluded the top-level element.
 
 
 　​
