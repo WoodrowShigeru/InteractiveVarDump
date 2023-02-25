@@ -35,15 +35,31 @@
 	// written like this, with ampersand, or else the reset overwrites these values. See #resetBug.
 	& {
 		font-family: 'Verdana', 'Helvetica Neue', 'Helvetica', sans-serif;
-		background: $color-tree-bg;
 		padding: 20px;
 		margin: 13px 0;
+		background: $color-tree-bg;
 		box-shadow: 2px 2px 5px $color-tree-shade;
 		border-radius: $border-radius;
 		min-width: 400px;
 		overflow-x: auto;
 		z-index: 99999;
 		position: relative;
+	}
+
+	&[data-ivd-color-mode="all"],
+	&[data-ivd-color-mode="link"],
+	&[data-ivd-color-mode="box"] {
+		color: $color-text;
+		background-color: $color-tree-bg;
+	}
+
+	&[data-ivd-color-mode="none"] {
+		&,
+		span:not(.ivd__alert),
+		ul {
+			color: $color-tree-bg;
+			background-color: $color-text;
+		}
 	}
 
 	.ivd__item {
@@ -55,8 +71,18 @@
 		border-bottom: 1px solid $color-text;
 
 		&:hover {
-			border-bottom: 1px dotted $color-text;
+			border-bottom-style: dotted;
 		}
+	}
+
+	&[data-ivd-color-mode="all"] .ivd--clickable,
+	&[data-ivd-color-mode="link"] .ivd--clickable {
+		color: $color-link;
+		border-bottom-color: $color-link;
+	}
+
+	&[data-ivd-color-mode="none"] .ivd--clickable {
+		border-bottom-color: $color-tree-bg;
 	}
 
 	.ivd__dismiss {
@@ -77,16 +103,18 @@
 		border-radius: $border-radius;
 		border: 1px dashed transparent;
 		cursor: pointer;
+	}
 
-		&:hover {
+	&[data-ivd-color-mode="all"],
+	&[data-ivd-color-mode="link"],
+	&[data-ivd-color-mode="box"] {
+		.ivd__dismiss:hover {
 			border-color: $color-text;
 		}
 	}
 
-	&[data-ivd-color-mode="all"] .ivd--clickable,
-	&[data-ivd-color-mode="link"] .ivd--clickable {
-		color: $color-link;
-		border-bottom-color: $color-link;
+	&[data-ivd-color-mode="none"] .ivd__dismiss:hover {
+		border-color: $color-tree-bg;
 	}
 
 	.ivd__content {
@@ -149,6 +177,7 @@
 		display: none;
 	}
 
+	// alerts are excluded from color=none.
 	.ivd__alert {
 		display: inline-block;
 		position: relative;
@@ -229,9 +258,11 @@
 	.ivd__injected-notice-bubble {
 		display: inline-flex;
 		column-gap: 0.75rem;
-		background-color: $color-notice;
-		border-radius: $border-radius;
+		align-items: center;
 		padding: 0.125rem 0.5rem;
+		background-color: $color-notice;
+		border: 1px solid $color-notice;
+		border-radius: $border-radius;
 
 		&::after {
 			content: '';
@@ -256,6 +287,15 @@
 
 		&:hover {
 			border-color: $color-tree-bg;
+		}
+	}
+
+	&[data-ivd-color-mode="none"] .ivd__injected-notice-bubble {
+		background-color: none;
+		border-color: $color-tree-bg;
+
+		&::after {
+			border-top-color: $color-tree-bg;
 		}
 	}
 

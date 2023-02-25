@@ -1,6 +1,5 @@
 ;(function( $ ) {
 // TODO  nocolors × new features (dismiss, show-path).
-// TODO  bug: if top-level closed, then batch-expand should expand it.
 // TODO  add composer.
 
 $(document)

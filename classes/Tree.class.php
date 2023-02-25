@@ -6,9 +6,10 @@ require_once "Node.class.php";
 
 
 class Tree {
-	const COLOR_MODE_ALL = 'all';
-	const COLOR_MODE_LINK = 'link';
-	const COLOR_MODE_NONE = 'none';
+	const COLOR_MODE_ALL	= 'all';
+	const COLOR_MODE_LINK	= 'link';
+	const COLOR_MODE_BOX	= 'box';
+	const COLOR_MODE_NONE	= 'none';
 
 	private $root = NULL;
 	private $color_mode = self::COLOR_MODE_ALL;
@@ -37,6 +38,7 @@ class Tree {
 		$valid = array(
 			self::COLOR_MODE_ALL,
 			self::COLOR_MODE_LINK,
+			self::COLOR_MODE_BOX,
 			self::COLOR_MODE_NONE,
 		);
 		if (in_array($config['color'], $valid)) {
