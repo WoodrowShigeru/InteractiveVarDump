@@ -3,22 +3,28 @@
 
 An interactive alternative to PHP's native `var_dump()` function, insofar as it lets you collapse and expand the individual children.
 
+You can also click on an array key or object property in order to display the path.
+
 ![Example dump](example.png)
 
 *NOTE:* Does not work with some few data types, i.e.:
 
-- objects of the class `DOMDocument` due to a bug in the Reflection framework: https://bugs.php.net/bug.php?id=48527
-- `RecursiveDirectoryIterator`
+* objects of the class `DOMDocument` due to a bug in the Reflection framework: https://bugs.php.net/bug.php?id=48527
+* `RecursiveDirectoryIterator`
 
 
  　​
 
 ## Basic Usage
 
-- `require` or `include` the file `InteractiveVarDump/functions.php` into your working environment.
-- Call `ivd( $any_var );`.
-- Optionally add a string: `ivd( $any_object, 'This is $any_var' );`.
-- Alternatively, call `qvd( $any_var )` for a very quick native `var_dump` call wrapped in a `‹pre›` tag.
+* `require` or `include` the file `InteractiveVarDump/functions.php` into your working environment.
+* Call `ivd( $any_var );`.
+* Optionally add a string: `ivd( $any_object, 'This is $any_var' );`.
+* Alternatively, call `qvd( $any_var )` for a very quick native `var_dump` call wrapped in a `‹pre›` tag.
+
+
+
+　​
 
 Depending on the complexity of the variable, additional overhead links will appear in the head of the tree.
 
