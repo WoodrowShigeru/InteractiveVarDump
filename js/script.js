@@ -15,6 +15,9 @@ $(document)
 
 		if ($dismissable.is('.ivd__tree[data-ivd-connect="z-indexer"]')) {
 			$('#ivd__z-indexer').remove();
+
+		} else if ($dismissable.is('#ivd__z-indexer')) {
+			$('.ivd__tree[data-ivd-connect="z-indexer"]').removeAttr('data-ivd-connect');
 		}
 
 		$dismissable.remove();
