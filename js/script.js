@@ -144,34 +144,34 @@ $(document)
 			// only add the overhead to items with complexity (depth).
 			if ($tree.find('.ivd__key').length) {
 				html.push(
-					'<ul class="ivd__overhead">',
-						'<li class="ivd__toggle-inline">toggle-break inline</li>'
+					'<div class="ivd__overhead">',
+						'<span class="ivd__overhead-item  ivd__toggle-inline">toggle-break inline</span>'
 				);
 				if ($tree.find('.ivd--protected').length) {
 					html.push(
-						'<li class="ivd__toggle-protected-properties">toggle-show protected properties</li>'
+						'<span class="ivd__overhead-item  ivd__toggle-protected-properties">toggle-show protected properties</span>'
 					);
 				}
 
 				if ($tree.find('.ivd--private').length) {
 					html.push(
-						'<li class="ivd__toggle-private-properties">toggle-show private properties</li>'
+						'<span class="ivd__overhead-item  ivd__toggle-private-properties">toggle-show private properties</span>'
 					);
 				}
 				if ($tree.find('.ivd__content .ivd__controller').length) {
 					html.push(
-						'<li class="ivd__batch-collapse">batch-collapse</li>',
-						'<li class="ivd__batch-expand">batch-expand</li>'
+						'<span class="ivd__overhead-item  ivd__batch-collapse">batch-collapse</span>',
+						'<span class="ivd__overhead-item  ivd__batch-expand">batch-expand</span>'
 					);
 				}
-				html.push('</ul><!-- /.ivd__overhead -->');
+				html.push('</div><!-- /.ivd__overhead -->');
 
 				$tree.prepend(html.join(''));
 			}
 
 
 			// comfort-wrap for CSS.
-			$tree.find('.ivd__controller, .ivd__overhead li')
+			$tree.find('.ivd__controller, .ivd__overhead-item')
 				.wrapInner('<span class="ivd--clickable"></span>')
 			;
 

@@ -4,11 +4,11 @@
 ## 1.2.7 or 1.3.0
 *(ø)*
 
-* Added: click key to show path of deep element.
+* Added: click key to show path of deep node.
 * Refactor: mildly modernized JavaScript code.
 * Added dismiss feature.
 * Added change-log file.
-* Bugfix: batch-expand purposefully but erroneously excluded the top-level element.
+* Bugfix: batch-expand purposefully but erroneously excluded the top-level node.
 
 
 　​

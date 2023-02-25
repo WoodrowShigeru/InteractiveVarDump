@@ -65,7 +65,7 @@ class Tree {
 				data-ivd-indent-level="%d"
 			>
 				<span class="ivd__dismiss">&times;</span>
-				%s
+				<div class="ivd__root-wrapper">%s</div>
 			</div><!-- /.ivd__tree -->',
 
 			implode('  ', $classes),
