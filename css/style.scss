@@ -8,6 +8,9 @@
 }
 
 
+// TODO  if you find the time: currently, the CSS rules aren't optimized for color-mode. It should be more convenient to CSs-dev these rules.
+
+
 .ivd__tree {
 	// TODO  something is broken with this fucking reset. It gets too much priority and overwrites many other rules. Define #resetBug.
 	//
@@ -85,12 +88,11 @@
 		border-bottom-color: $color-tree-bg;
 	}
 
-	.ivd__dismiss {
+	.ivd__dismiss,
+	.ivd__z-indexer-start {
 		display: inline-block;
 		position: absolute;
 		z-index: 2;
-		top: 0.25rem;
-		right: 0.25rem;
 
 		// reset nonsense!
 		box-sizing: content-box !important;
@@ -105,16 +107,32 @@
 		cursor: pointer;
 	}
 
+	.ivd__dismiss {
+		top: 0.25rem;
+		right: 0.25rem;
+	}
+
+	.ivd__z-indexer-start {
+		top: 1.5rem;
+		right: 0.25rem;
+	}
+
 	&[data-ivd-color-mode="all"],
 	&[data-ivd-color-mode="link"],
 	&[data-ivd-color-mode="box"] {
-		.ivd__dismiss:hover {
+		.ivd__dismiss:hover,
+		.ivd__z-indexer-start:hover,
+		&[data-ivd-connect="z-indexer"] .ivd__z-indexer-start {
 			border-color: $color-text;
 		}
 	}
 
-	&[data-ivd-color-mode="none"] .ivd__dismiss:hover {
-		border-color: $color-tree-bg;
+	&[data-ivd-color-mode="none"] {
+		.ivd__dismiss:hover,
+		.ivd__z-indexer-start:hover,
+		&[data-ivd-connect="z-indexer"] .ivd__z-indexer-start {
+			border-color: $color-tree-bg;
+		}
 	}
 
 	.ivd__content {

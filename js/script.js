@@ -134,8 +134,7 @@ $(document)
 
 
 	// start z-indexer (w/ new tree).
-//	.on('click', '.ivd__z-indexer-start', (ev) => {
-	.on('dblclick', '.ivd__tree', (ev) => {
+	.on('click', '.ivd__z-indexer-start', (ev) => {
 		let
 			$body = $('body'),
 			$z_indexer = $('#ivd__z-indexer'),
@@ -174,15 +173,11 @@ $(document)
 				$tree = $(tree),
 				html = []
 			;
-			html.push(
-				'<div class="ivd__overhead">',
-					'<span class="ivd__overhead-item  ivd__z-indexer-start">z-indexer</span>'
-			);
-
-			// only add some controllers for dump-values with complexity (depth).
+			// only add overhead for dump-values with complexity (depth).
 			if ($tree.find('.ivd__key').length) {
 				html.push(
-					'<span class="ivd__overhead-item  ivd__toggle-inline">toggle-break inline</span>'
+					'<div class="ivd__overhead">',
+						'<span class="ivd__overhead-item  ivd__toggle-inline">toggle-break inline</span>'
 				);
 				if ($tree.find('.ivd--protected').length) {
 					html.push(
@@ -201,11 +196,11 @@ $(document)
 						'<span class="ivd__overhead-item  ivd__batch-expand">batch-expand</span>'
 					);
 				}
+
+				html.push('</div><!-- /.ivd__overhead -->');
+
+				$tree.prepend(html.join(''));
 			}
-
-			html.push('</div><!-- /.ivd__overhead -->');
-
-			$tree.prepend(html.join(''));
 
 
 			// comfort-wrap for CSS.
@@ -256,10 +251,6 @@ window.addEventListener('wheel', (ev) => {
 	return false;
 
 }, { passive: false });
-
-//	// test: operate z-indexer.
-//	.on('wheel', '#ivd__z-indexer-start', )  // end of ( on-click z-indexer-start )
-
 
 
 }(jQuery));

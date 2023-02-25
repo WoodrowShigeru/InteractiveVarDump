@@ -61,11 +61,13 @@ class Tree {
 
 		return sprintf(
 			'<div class="%s"
-				title="Double-click tree box to adjust z-index"
 				data-ivd-color-mode="%s"
 				data-ivd-indent-level="%d"
 			>
 				<span class="ivd__dismiss">&times;</span>
+				<span class="ivd__z-indexer-start"
+					title="Adjust z-index"
+				>z</span>
 				<div class="ivd__root-wrapper">%s</div>
 			</div><!-- /.ivd__tree -->',
 
