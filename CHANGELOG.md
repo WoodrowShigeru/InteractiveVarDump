@@ -11,6 +11,7 @@
 * Bugfix: batch-expand purposefully but erroneously excluded the top-level node.
 * Added `box` value to replace previous `none` behavior for `color` configuration, and made `none` truly disable colors (except for alerts).
 * Added composer.
+* Added z-indexer feature.
 
 
 　​

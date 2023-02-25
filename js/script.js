@@ -133,8 +133,9 @@ $(document)
 	})  // end of ( on-click key )
 
 
-	// test: start z-indexer.
-	.on('click', '.ivd__z-indexer-start', (ev) => {
+	// start z-indexer (w/ new tree).
+//	.on('click', '.ivd__z-indexer-start', (ev) => {
+	.on('dblclick', '.ivd__tree', (ev) => {
 		let
 			$body = $('body'),
 			$z_indexer = $('#ivd__z-indexer'),
@@ -145,43 +146,24 @@ $(document)
 				`<div id="ivd__z-indexer" class="ivd--dismissable">
 					<span class="ivd__dismiss">&times;</span>
 					<span class="ivd__label">Mousewheel</span>
-					<input type="text" name="ivd__z_indexer" class="ivd__form-control" />
+					<input type="number" name="ivd__z_indexer" class="ivd__form-control" />
 				</div>`
 			);
 			$z_indexer = $('#ivd__z-indexer');
 		}
 
 
+		// disconnect any others.
+		$('.ivd__tree[data-ivd-connect="z-indexer"]').removeAttr('data-ivd-connect');
+
 		$z_indexer.find('[name="ivd__z_indexer"]').val(
 			$tree.css('z-index')
 		);
 
-		// TODO  +temp-id.
+		// connect z-indexer to tree. There can only be one.
+		$tree.attr('data-ivd-connect', 'z-indexer');
 
 	})  // end of ( on-click z-indexer-start )
-
-
-	// // test: operate z-indexer.
-	// .on('wheel', '#ivd__z-indexer-start', (ev) => {
-	// 	console.log('delta oer someth', ev);
-
-	// 	let
-	// 		$z_indexer = $('#ivd__z-indexer'),
-	// 		$tree = $('.ivd__tree').eq(2)
-	// 	;
-	// 	if (!$z_indexer.length || !$tree.length) {
-	// 		return;
-	// 	}
-
-	// 	let
-	// 		z_index = $z_indexer.find('[name="ivd__z_indexer"]').val()
-	// 	;
-
-	// 	$z_indexer.find('[name="ivd__z_indexer"]').val(
-	// 		$tree.css('z-index', z_index)
-	// 	);
-
-	// })  // end of ( on-click z-indexer-start )
 
 
 	.ready((ready_ev) => {
@@ -192,12 +174,15 @@ $(document)
 				$tree = $(tree),
 				html = []
 			;
-			// only add the overhead to items with complexity (depth).
+			html.push(
+				'<div class="ivd__overhead">',
+					'<span class="ivd__overhead-item  ivd__z-indexer-start">z-indexer</span>'
+			);
+
+			// only add some controllers for dump-values with complexity (depth).
 			if ($tree.find('.ivd__key').length) {
 				html.push(
-					'<div class="ivd__overhead">',
-						'<span class="ivd__overhead-item  ivd__toggle-inline">toggle-break inline</span>',
-						'<span class="ivd__overhead-item  ivd__z-indexer-start">z-index-test</span>'
+					'<span class="ivd__overhead-item  ivd__toggle-inline">toggle-break inline</span>'
 				);
 				if ($tree.find('.ivd--protected').length) {
 					html.push(
@@ -216,10 +201,11 @@ $(document)
 						'<span class="ivd__overhead-item  ivd__batch-expand">batch-expand</span>'
 					);
 				}
-				html.push('</div><!-- /.ivd__overhead -->');
-
-				$tree.prepend(html.join(''));
 			}
+
+			html.push('</div><!-- /.ivd__overhead -->');
+
+			$tree.prepend(html.join(''));
 
 
 			// comfort-wrap for CSS.
@@ -241,7 +227,7 @@ $(document)
 window.addEventListener('wheel', (ev) => {
 	let
 		$z_indexer = $('#ivd__z-indexer'),
-		$tree = $('.ivd__tree').eq(2)
+		$tree = $('.ivd__tree[data-ivd-connect="z-indexer"]')
 	;
 	if (
 		!$z_indexer.length
@@ -252,8 +238,6 @@ window.addEventListener('wheel', (ev) => {
 	}
 
 
-	console.log('delta oer someth', ev);
-
 	let
 		z_index = Number($z_indexer.find('[name="ivd__z_indexer"]').val())
 	;
@@ -262,12 +246,11 @@ window.addEventListener('wheel', (ev) => {
 	}
 
 	z_index += ev.wheelDelta;
-	console.log('z_index', z_index);
 
 	$tree.css('z-index', z_index);
-
 	$z_indexer.find('[name="ivd__z_indexer"]').val(z_index);
 
+	// do not scroll while hovering in this box.
 	ev.preventDefault();
 	ev.stopPropagation();
 	return false;

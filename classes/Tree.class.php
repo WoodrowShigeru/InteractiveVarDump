@@ -61,6 +61,7 @@ class Tree {
 
 		return sprintf(
 			'<div class="%s"
+				title="Double-click tree box to adjust z-index"
 				data-ivd-color-mode="%s"
 				data-ivd-indent-level="%d"
 			>

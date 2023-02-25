@@ -3,7 +3,7 @@
 
 An interactive alternative to PHP's native `var_dump()` function, insofar as it lets you collapse and expand the individual children.
 
-You can also click on an array key or object property in order to display the path.
+You can also click on an array key or object property in order to display the path. Use triple-click for copy-n-paste.
 
 ![Example dump](example.png)
 
