@@ -300,3 +300,40 @@
 	}
 
 }  // end of ( .ivd__tree )
+
+
+
+.ivd__form-control {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.25rem;
+}
+
+.ivd__label {
+	+ .ivd__form-control {
+		margin-top: 0.5rem;
+	}
+}
+
+
+#ivd__z-indexer {
+	display: flex;
+	position: fixed;
+	z-index: 999999999999999999999;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	top: 1rem;
+	left: 1rem;
+	box-shadow: 2px 2px 5px $color-tree-shade;
+	border-radius: $border-radius;
+	background-color: blueviolet;
+	width: 100px;
+	height: 100px;
+	padding: 0.5rem;
+
+	.ivd__form-control {
+		text-align: center;
+	}
+}
+

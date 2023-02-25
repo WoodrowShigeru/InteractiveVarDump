@@ -133,6 +133,30 @@ $(document)
 	})  // end of ( on-click key )
 
 
+	// test: start z-indexer.
+	.on('click', '.ivd__z-indexer-start', (ev) => {
+		let
+			$body = $('body'),
+			$z_indexer = $('#ivd__z-indexer'),
+			$tree = $(ev.currentTarget).closest('.ivd__tree')
+		;
+		if (!$z_indexer.length) {
+			$body.append(
+				`<div id="ivd__z-indexer">
+					<span class="ivd__label">Mousewheel</span>
+					<input type="text" name="ivd__z_indexer" class="ivd__form-control" />
+				</div>`
+			);
+			$z_indexer = $('#ivd__z-indexer');
+
+			$z_indexer.find('[name="ivd__z_indexer"]').val(
+				$tree.css('z-index')
+			);
+		}
+
+	})  // end of ( on-click z-indexer-start )
+
+
 	.ready((ready_ev) => {
 
 		// build overhead controllers.
@@ -145,7 +169,8 @@ $(document)
 			if ($tree.find('.ivd__key').length) {
 				html.push(
 					'<div class="ivd__overhead">',
-						'<span class="ivd__overhead-item  ivd__toggle-inline">toggle-break inline</span>'
+						'<span class="ivd__overhead-item  ivd__toggle-inline">toggle-break inline</span>',
+						'<span class="ivd__overhead-item  ivd__z-indexer-start">z-index-test</span>'
 				);
 				if ($tree.find('.ivd--protected').length) {
 					html.push(
