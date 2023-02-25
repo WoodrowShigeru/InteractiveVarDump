@@ -1,11 +1,13 @@
 
 # InteractiveVarDump
 
-An interactive alternative to PHP's native `var_dump()` function, insofar as it lets you collapse and expand the individual children.
+An interactive alternative to PHP's native `var_dump()` function, insofar as it lets you …
 
-You can also click on an array key or object property in order to display the path. Use triple-click for copy-n-paste.
+* … collapse and expand the individual children.
+* … display the path of deep tree nodes by clicking on an array key or object property. Use triple-click for copy-n-paste.
+* … click on the Z button in order to adjust z-index on the fly.
 
-![Example dump](example.png)
+![Example dump](example-02.png)
 
 *NOTE:* Does not work with some few data types, i.e.:
 

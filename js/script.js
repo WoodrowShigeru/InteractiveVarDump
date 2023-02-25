@@ -1,7 +1,5 @@
 ;(function( $ ) {
 
-// TODO  phpdoc to Node and Tree methods, and classes themselves.
-
 
 $(document)
 	// dismiss things.

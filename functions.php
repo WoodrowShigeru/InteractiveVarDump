@@ -22,13 +22,19 @@ if (function_exists('ivd')) {
 	/**
 	 * Dumps a given variable in an interactive tree; for debugging convenience.
 	 *
-	 * @param $subject mixed  The to-dump variable.
-	 * @param $pretext string  Optional message to prefix the dump with.
-	 * @param $config array  Optional configuration array for further control. See docs for further info.
+	 * @param mixed $subject
+	 *   The to-dump variable.
 	 *
-	 * @return $object|null  Depending on getter parameter.
+	 * @param string|null $pretext
+	 *   Optional message to prefix the dump with.
+	 *
+	 * @param array $config
+	 *   Optional configuration array for further control. See docs for further info.
+	 *
+	 * @return $object|null
+	 *   Returns or prints, depending on getter parameter.
 	 */
-	function ivd( $subject, $pretext = FALSE, array $config = NULL ) {
+	function ivd( $subject, string $pretext = NULL, array $config = NULL ) {
 
 		global $ivd_initialized;
 
@@ -53,41 +59,16 @@ if (function_exists('ivd')) {
 			$ivd_initialized = TRUE;
 		}
 
-		if ($pretext) {
+		if (isset($pretext)) {
 			echo $pretext .':<br />';
 		}
 
-		// normalize config.
-		if (!isset($config)) {
-			$config = array();
-		}
-		if (!array_key_exists('return', $config)) {
-			$config['return'] = FALSE;
-		}
-		if (!array_key_exists('color', $config)) {
-			$config['color'] = 'all';
-		}
-		if (!array_key_exists('max_depth', $config)) {
-			$config['max_depth'] = 10;
-		}
-		if (
-			!array_key_exists('indent', $config)
-		||	!is_integer($config['indent'])
-		||	($config['indent'] < 1)
-		) {
-			$config['indent'] = 0;
-		}
-		if (!array_key_exists('start_collapsed', $config)) {
-			$config['start_collapsed'] = FALSE;
-		}
-
-
 		$tree = new Tree($subject, $config);
-		if ($config['return']) {
+		if (($config['return'] ?? FALSE) === TRUE) {
 			return $tree->get();
 
 		} else {
-			echo $tree->display();
+			echo $tree->render();
 		}
 	}
 }  // end of ( ivd didn't exist yet )

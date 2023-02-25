@@ -2,33 +2,83 @@
 
 namespace InteractiveVarDump;
 
+use Exception;
 
+
+/**
+ * Node representing a scalar value, array, object.
+ */
 class Node {
 
-	private $type = NULL;
-	private $classname = NULL;
+	/**
+	 * @var string $type
+	 *   The type of the current node value.
+	 */
+	private $type = '';
+
+	/**
+	 * @var string $classname
+	 *   The classname for objects.
+	 */
+	private $classname = '';
+
+	/**
+	 * @var mixed $obj
+	 *   The raw value of the current Node.
+	 */
 	private $obj = NULL;
-	private $is_flat = true;	// = scalar or NULL
+
+	/**
+	 * @var boolean $is_flat
+	 *   Whether the current Node value is scalar or not.
+	 */
+	private $is_flat = TRUE;	// = scalar or NULL
+
+	/**
+	 * @var integer $max_depth
+	 *   The maximum depth carried over from the parent Tree object.
+	 */
 	private $max_depth = 10;
+
+	/**
+	 * @var integer $current_depth
+	 *   The tree depth of the current Node.
+	 */
 	private $current_depth = 0;
 
 
 
 	//=============== CONSTRUCTOR ===============//
 
-	public function __construct( $subject, $max_depth = 10, $current_depth = 0 ) {
+	/**
+	 * Create an instance of this class.
+	 *
+	 * @param mixed $subject
+	 *   The variable or sub-variable to process.
+	 *
+	 * @param integer $max_depth
+	 *   The maximum recursion depth.
+	 *
+	 * @param integer $current_depth
+	 *   The current recursion depth.
+	 *
+	 * @return Node
+	 */
+	public function __construct( $subject, int $max_depth = 10, int $current_depth = 0 ) {
 
-		if (isset($subject)) {
-			$this->type = gettype($subject);
+		$this->type = isset($subject)   ? gettype($subject)   : 'null';
 
-			if (is_object($subject)) {
-				$this->classname = get_class($subject);
-			}
+		if (is_object($subject)) {
+			$this->classname = get_class($subject);
+		}
+
+		if ($max_depth < 1) {
+			$max_depth = 10;
 		}
 
 		$this->obj = $subject;
 
-		$this->is_flat = is_scalar($subject)  ||  !isset($subject);
+		$this->is_flat = is_scalar($subject) || !isset($subject);
 
 		$this->max_depth = $max_depth;
 		$this->current_depth = $current_depth;
@@ -39,7 +89,15 @@ class Node {
 
 	//=============== METHODS ===============//
 
-	public function display() {
+	/**
+	 * Render the node.
+	 *
+	 * @since version 1.0.1: as display()
+	 * @since version 1.3.0: renamed to render()
+	 *
+	 * @return void
+	 */
+	public function render() {
 
 		$out = '';
 		$limit_text =
@@ -92,7 +150,7 @@ class Node {
 							.			$key_string
 							.		'</span>'
 							.		'<span class="ivd__arrow">=></span>'
-							.		$tmp->display()
+							.		$tmp->render()
 							.	'</span><!-- /.ivd__item -->'
 							;
 						}
@@ -178,7 +236,7 @@ class Node {
 							.			$key_string
 							.		'</span>'
 							.		'<span class="ivd__arrow">=></span>'
-							.		$tmp->display()
+							.		$tmp->render()
 							.	'</span><!-- /.ivd__item -->'
 							;
 						}  // end of ( each property )
@@ -201,7 +259,7 @@ class Node {
 
 				} else {
 					$tmp = new Node($this->obj, $this->max_depth, ($this->current_depth +1));
-					$out .= $tmp->display();
+					$out .= $tmp->render();
 				}
 			}
 
@@ -213,7 +271,7 @@ class Node {
 
 			switch ($this->type) {
 
-				case "string":
+				case 'string':
 					$len = strlen($this->obj);
 					$len_entity_test = strlen(html_entity_decode($this->obj, ENT_QUOTES));
 
@@ -222,29 +280,34 @@ class Node {
 					if ($len !== $len_entity_test) {
 						$out .= ' (HTML-entity detected)';
 					}
-				break;
+					break;
 
-				case "integer":
+
+				case 'integer':
 					$out .= 'int('.$styled_value.')';
-				break;
+					break;
 
-				case "double":
+
+				case 'double':
 					$out .= 'float('.$styled_value.')';
-				break;
+					break;
 
-				case "boolean":
+
+				case 'boolean':
 					$out .= 'bool(<span class="ivd__value">'.($this->obj  ? 'true'  : 'false').'</span>)';
-				break;
+					break;
 
-				case NULL:
+
+				case 'null':
 					$out .= '<span class="ivd__value">NULL</span>';
-				break;
+					break;
+
 
 				default:
 					$out .= 'Unsupported variable type: '.$this->type;
-				break;
+					break;
 
-			}  // end of ( switch-case type )
+			}  // end of ( switch: type )
 
 			$out = '<span class="ivd__scalar  ivd__value-wrapper  ivd--inline">'.$out.'</span>';
 
@@ -258,19 +321,51 @@ class Node {
 
 	//=============== GETTERS/SETTERS ===============//
 
-	public function get_object() {
+	/**
+	 * Get the $obj property.
+	 *
+	 * @since version 1.0.1: as get_object()
+	 * @since version 1.3.0: renamed to getObject()
+	 *
+	 * @return mixed
+	 */
+	public function getObject() {
 		return $this->obj;
 	}
 
-	public function get_type() {
+	/**
+	 * Get the $type property.
+	 *
+	 * @since version 1.0.1: as get_type()
+	 * @since version 1.3.0: renamed to getType()
+	 *
+	 * @return string
+	 */
+	public function getType() {
 		return $this->type;
 	}
 
-	public function get_classname() {
+	/**
+	 * Get the $classname property.
+	 *
+	 * @since version 1.0.1: as get_classname()
+	 * @since version 1.3.0: renamed to getClassname()
+	 *
+	 * @return string
+	 */
+	public function getClassname() {
 		return $this->classname;
 	}
 
-	public function are_you_flat() {
+	/**
+	 * Get the $is_flat property.
+	 *
+	 * @since version 1.0.1: as are_you_flat()
+	 * @since version 1.3.0: renamed to isFlat()
+	 *
+	 * @return boolean
+	 */
+	public function isFlat() {
 		return $this->is_flat;
 	}
 
