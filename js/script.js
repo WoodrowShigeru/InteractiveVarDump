@@ -185,8 +185,26 @@ $(document)
 	})  // end of ( on-click z-indexer-start )
 
 
-	// // dismiss extra stuff #1.
-	// .on('click', '.ivd__z-indexer-start', (ev) => {})  // end of ( on-click z-indexer-start )
+	// apply z-index on-blur.
+	.on('blur', ':input[name="ivd__z_indexer"]', (ev) => {
+		let
+			$z_indexer = $('#ivd__z-indexer [name="ivd__z_indexer"]'),
+			$tree = $('.ivd__tree[data-ivd-connect="z-indexer"]')
+		;
+		if (!$z_indexer.length || !$tree.length) {
+			return;
+		}
+
+		let
+			z_index = Number($z_indexer.val())
+		;
+		if (Number.isNaN(z_index)) {
+			z_index = 0;
+		}
+
+		$tree.css('z-index', z_index);
+
+	})  // end of ( on-blur z-indexer input )
 
 
 	.ready((ready_ev) => {
