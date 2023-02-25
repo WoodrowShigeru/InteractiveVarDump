@@ -9,6 +9,8 @@
 
 
 .ivd__tree {
+	// TODO  something is broken with this fucking reset. It gets too much priority and overwrites many other rules. Define #resetBug.
+	//
 	/* Reset */
 	&,
 	span,
@@ -30,7 +32,7 @@
 	}
 
 
-	// written like this, or else the reset overwrites these values.
+	// written like this, with ampersand, or else the reset overwrites these values. See #resetBug.
 	& {
 		font-family: 'Verdana', 'Helvetica Neue', 'Helvetica', sans-serif;
 		background: $color-tree-bg;
@@ -122,10 +124,10 @@
 		color: $color-key;
 	}
 
-	.ivd__key-core {
+	.ivd__key {
 		cursor: pointer;
 
-		&:hover {
+		&:hover .ivd__key-core {
 			text-decoration: underline;
 		}
 	}

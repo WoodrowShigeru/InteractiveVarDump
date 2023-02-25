@@ -1,6 +1,7 @@
 ;(function( $ ) {
 	// TODO  add change-log.
 	// TODO  nocolors × new features (dismiss, show-path).
+	// TODO  bug: if top-level closed, then batch-expand should expand it.
 
 	$(document)
 		// dismiss things.
@@ -47,7 +48,6 @@
 
 
 		// overhead: private property togglers.
-		// TODO  broken.
 		.on('click', '.ivd__toggle-private-properties', (ev) => {
 			let
 				$set = $(ev.currentTarget).closest('.ivd__tree')
@@ -95,9 +95,9 @@
 
 
 		// show path of potentially deep elements.
-		.on('click', '.ivd__key-core', (ev) => {
+		.on('click', '.ivd__key', (ev) => {
 			let
-				$self = $(ev.currentTarget).closest('.ivd__key'),
+				$self = $(ev.currentTarget),
 				$prepend_here = $self.parent('.ivd__item'),
 				parents = $self.parents('.ivd__item').get(),
 				path = 'root'
