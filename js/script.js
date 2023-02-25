@@ -155,8 +155,14 @@ $(document)
 			$body.append(
 				`<div id="ivd__z-indexer" class="ivd--dismissable">
 					<span class="ivd__dismiss">&times;</span>
-					<span class="ivd__label">Mousewheel</span>
-					<input type="number" name="ivd__z_indexer" class="ivd__form-control" />
+					<div class="ivd__z-indexer-fieldset"
+						title="Type or mousewheel"
+					>
+						<input type="number"
+							name="ivd__z_indexer"
+							class="ivd__form-control"
+						/>
+					</div>
 				</div>`
 			);
 			$z_indexer = $('#ivd__z-indexer');

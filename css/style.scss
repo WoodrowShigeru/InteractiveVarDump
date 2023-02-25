@@ -11,35 +11,56 @@
 // TODO  if you find the time: currently, the CSS rules aren't optimized for color-mode. It should be more convenient to CSs-dev these rules.
 
 
+/* Reset */
+[class*="ivd__"],
+[class*="ivd--"] {
+// .ivd {
+	box-sizing: border-box;
+	position: static;
+	text-align: left;
+	color: $color-text;
+	background: none;
+	width: auto;
+	height: auto;
+	padding: 0;
+	margin: 0;
+	font-size: 10px;
+	line-height: 18px;
+	vertical-align: baseline;
+	visibility: visible;
+	opacity: 1;
+}
+
+
 .ivd__tree {
-	// TODO  something is broken with this fucking reset. It gets too much priority and overwrites many other rules. Define #resetBug.
-	//
-	/* Reset */
-	&,
-	span,
-	ul {
-		box-sizing: border-box;
-		position: static;
-		text-align: left;
-		color: $color-text;
-		background: none;
-		width: auto;
-		height: auto;
-		padding: 0;
-		margin: 0;
-		font-size: 10px;
-		line-height: 18px;
-		vertical-align: baseline;
-		visibility: visible;
-		opacity: 1;
-	}
+	// // TODO  something is broken with this fucking reset. It gets too much priority and overwrites many other rules. Define #resetBug.
+	// //
+	// /* Reset */
+	// &,
+	// span,
+	// ul {
+	// 	box-sizing: border-box;
+	// 	position: static;
+	// 	text-align: left;
+	// 	color: $color-text;
+	// 	background: none;
+	// 	width: auto;
+	// 	height: auto;
+	// 	padding: 0;
+	// 	margin: 0;
+	// 	font-size: 10px;
+	// 	line-height: 18px;
+	// 	vertical-align: baseline;
+	// 	visibility: visible;
+	// 	opacity: 1;
+	// }
 
 
 	// written like this, with ampersand, or else the reset overwrites these values. See #resetBug.
 	& {
 		font-family: 'Verdana', 'Helvetica Neue', 'Helvetica', sans-serif;
-		padding: 20px;
-		margin: 13px 0;
+		padding: $box-padding;
+		margin: 1rem 0;
 		background: $color-tree-bg;
 		box-shadow: 2px 2px 5px $color-tree-shade;
 		border-radius: $border-radius;
@@ -86,35 +107,6 @@
 
 	&[data-ivd-color-mode="none"] .ivd--clickable {
 		border-bottom-color: $color-tree-bg;
-	}
-
-	.ivd__dismiss,
-	.ivd__z-indexer-start {
-		display: inline-block;
-		position: absolute;
-		z-index: 2;
-
-		// reset nonsense!
-		box-sizing: content-box !important;
-
-		width: 2 * $dismiss-base;
-		height: $dismiss-base;
-		line-height: $dismiss-base;
-		text-align: center;
-		font-weight: bold;
-		border-radius: $border-radius;
-		border: 1px dashed transparent;
-		cursor: pointer;
-	}
-
-	.ivd__dismiss {
-		top: 0.25rem;
-		right: 0.25rem;
-	}
-
-	.ivd__z-indexer-start {
-		top: 1.5rem;
-		right: 0.25rem;
 	}
 
 	&[data-ivd-color-mode="all"],
@@ -326,6 +318,37 @@
 
 
 
+.ivd__dismiss,
+.ivd__z-indexer-start {
+	display: inline-block;
+	position: absolute;
+	z-index: 2;
+
+	// reset nonsense!
+	box-sizing: content-box !important;
+
+	width: 2 * $dismiss-base;
+	height: $dismiss-base;
+	line-height: $dismiss-base;
+	text-align: center;
+	font-weight: bold;
+	border-radius: $border-radius;
+	border: 1px dashed transparent;
+	cursor: pointer;
+}
+
+
+.ivd__dismiss {
+	top: 0.25rem;
+	right: 0.25rem;
+}
+
+.ivd__z-indexer-start {
+	top: 1.5rem;
+	right: 0.25rem;
+}
+
+
 .ivd__form-control {
 	box-sizing: border-box;
 	width: 100%;
@@ -340,23 +363,47 @@
 
 
 #ivd__z-indexer {
-	display: flex;
 	position: fixed;
 	z-index: 999999999999999999999;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
-	top: 1rem;
-	left: 1rem;
+	right: 2vw;
+	bottom: 2vh;
 	box-shadow: 2px 2px 5px $color-tree-shade;
 	border-radius: $border-radius;
-	background-color: blueviolet;
+	color: $color-tree-bg;
+	background: linear-gradient(0deg, $color-value-wrapper, $color-value);
 	width: 100px;
-	height: 100px;
-	padding: 0.5rem;
+	padding: $box-padding;
+	box-sizing: content-box !important;
+
+	.ivd__dismiss {
+		// RESET YOU FUCKING CUNT!
+		color: $color-tree-bg !important;
+		font-weight: bold !important;  // TODO  DOESN'T BOLD. I DON'T CARE.
+		font-size: 1rem !important;
+	}
+
+	.ivd__dismiss:hover {
+		border-color: $color-tree-bg;
+	}
+
+	.ivd__z-indexer-fieldset {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		box-sizing: content-box !important;
+	}
 
 	.ivd__form-control {
 		text-align: center;
+		color: $color-tree-bg;
+		background-color: #fff;
+
+		// FOR FUCK'S SAKE, RESET!!
+		border: 1px solid gray;
+		box-sizing: content-box !important;
+		font-size: 1rem !important;
+		line-height: 1;
 	}
 }
 
