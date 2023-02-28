@@ -7,6 +7,7 @@
  * @version 1.3.0
  */
 
+use InteractiveVarDump\InteractiveVarDump as IVD;
 use InteractiveVarDump\Tree;
 
 require_once dirname(__FILE__) .'/vendor/autoload.php';
@@ -31,45 +32,14 @@ if (function_exists('ivd')) {
 	 * @param array $config
 	 *   Optional configuration array for further control. See docs for further info.
 	 *
-	 * @return $object|null
+	 * @return Tree|null
 	 *   Returns or prints, depending on getter parameter.
 	 */
-	function ivd( $subject, string $pretext = NULL, array $config = NULL ) {
+	function ivd( ...$args ) {
 
-		global $ivd_initialized;
+		return IVD::dump(...$args);
 
-		if (!$ivd_initialized) {
-			 // apply necessary includes. Doesn't matter where in the DOM you are
-			 // (in DEV environments).
-
-			$dir = dirname(__FILE__) .'/';
-
-			echo '<style type="text/css">';
-			include $dir .'css/style.min.css';
-			echo '</style>';
-
-			echo '<script type="text/javascript">';
-				include $dir .'js/jquery.js';
-			echo '</script>';
-
-			echo '<script type="text/javascript">';
-				include $dir .'js/script.js';
-			echo '</script>';
-
-			$ivd_initialized = TRUE;
-		}
-
-		if (isset($pretext)) {
-			echo $pretext .':<br />';
-		}
-
-		$tree = new Tree($subject, $config);
-		if (($config['return'] ?? FALSE) === TRUE) {
-			return $tree->get();
-
-		} else {
-			echo $tree->render();
-		}
+		// TODO  1.3.0: more testing.
 	}
 }  // end of ( ivd didn't exist yet )
 
