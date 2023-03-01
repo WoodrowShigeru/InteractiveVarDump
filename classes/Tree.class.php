@@ -155,13 +155,13 @@ class Tree {
 			'<div class="%s"
 				data-ivd-color-mode="%s"
 				data-ivd-indent-level="%d"
-			>
-				<span class="ivd__dismiss">&times;</span>
-				<span class="ivd__z-indexer-start"
+			>'
+		.		'<span class="ivd__dismiss">&times;</span>'
+		.		'<span class="ivd__z-indexer-start"
 					title="Adjust z-index"
-				>z</span>
-				<div class="ivd__root-wrapper">%s</div>
-			</div><!-- /.ivd__tree -->',
+				>z</span>'
+		.		'<div class="ivd__root-wrapper">%s</div>'
+		.	'</div><!-- /.ivd__tree -->',
 
 			implode('  ', $classes),
 			$this->color_mode,
