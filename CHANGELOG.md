@@ -5,7 +5,7 @@
 *(ø)*
 
 * Added: click key to show path of deep node.
-* Refactor: mildly modernized JavaScript code.
+* Refactor: mildly modernized code.
 * Added dismiss feature.
 * Added change-log file.
 * Bugfix: batch-expand purposefully but erroneously excluded the top-level node.
