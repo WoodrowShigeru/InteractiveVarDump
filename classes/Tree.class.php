@@ -13,6 +13,8 @@ class Tree {
 	const COLOR_MODE_BOX	= 'box';
 	const COLOR_MODE_NONE	= 'none';
 
+
+
 	/**
 	 * @var Node|null $root
 	 *   The root node.
@@ -186,5 +188,5 @@ class Tree {
 		return $this->root;
 	}
 
-}  // end of ( CLASS "Tree" )
+}
 

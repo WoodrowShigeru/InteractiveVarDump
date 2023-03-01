@@ -25,16 +25,18 @@ class InteractiveVarDump {
 	 * Dump a given variable in an interactive tree; for debugging convenience.
 	 *
 	 * @param mixed $subject
-	 *   The to-dump variable.
+	 *   The variable to dump.
 	 *
 	 * @param string|null $pretext
-	 *   Optional message to prefix the dump with.
+	 *   Optional message to preface the dump with. The pretext is never part
+	 *   of the returned value of the `return` configuration.
 	 *
 	 * @param array $config
-	 *   Optional configuration array for further control. See docs for further info.
+	 *   Optional configuration for further control. See README for further
+	 *   info.
 	 *
 	 * @return Tree|null
-	 *   Returns or prints, depending on getter parameter.
+	 *   Returns or prints, depending on `return` configuration.
 	 */
 	public static function dump( $subject, string $pretext = NULL, array $config = NULL ) {
 
@@ -70,6 +72,28 @@ class InteractiveVarDump {
 		} else {
 			echo $tree->render();
 		}
+	}
+
+
+	/**
+	 * Simple and quick shortcut for the native var_dump() method, but wrapped
+	 * in ‹pre› tags.
+	 *
+	 * @param mixed $subject
+	 *   The variable to dump.
+	 *
+	 * @param string $pretext
+	 *   Optional message to prefix the dump with.
+	 *
+	 * @return null
+	 */
+	public static function simple( $subject, $pretext = FALSE ) {
+
+		if ($pretext) {
+			echo $pretext .':<br />';
+		}
+
+		echo '<pre style="white-space: pre-wrap;">'; var_dump($subject); echo '</pre><br />';
 	}
 
 

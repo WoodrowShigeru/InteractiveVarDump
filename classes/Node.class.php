@@ -2,8 +2,6 @@
 
 namespace InteractiveVarDump;
 
-use Exception;
-
 
 /**
  * Node representing a scalar value, array, object.
