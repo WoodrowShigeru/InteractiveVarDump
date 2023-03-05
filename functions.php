@@ -14,6 +14,8 @@ require_once dirname(__FILE__) .'/vendor/autoload.php';
 //
 // TODO  this seems to be bad. Now I have to download from GitHub, require "functions.php", but additionally even: traverse to vendor dir and manually call composer dumpautoload -o for this package individually. That's bullshit.
 
+// TODO  additionally, I forgot z-indexer onkeyup or onchange.
+
 
 if (function_exists('ivd')) {
 	trigger_error(
