@@ -2,7 +2,7 @@
 # Change Log
 
 ## 1.3.0
-*(ø)*
+*(2023-03-05)*
 
 * Added: click key to show path of deep node.
 * Refactor: mildly modernized code.
