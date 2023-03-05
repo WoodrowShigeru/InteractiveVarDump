@@ -228,7 +228,7 @@ class Node {
 		$reflective_properties = array();
 		$tmp = $reflection->getProperties();
 
-		// kick the static stuff, I don't need it.
+		// kick the static stuff (for child classes), we don't need it.
 		foreach ($tmp as $property) {
 			if (!$property->isStatic()) {
 				array_push($reflective_properties, $property);
@@ -237,7 +237,7 @@ class Node {
 		unset($tmp);
 
 
-		// ???
+		// count actual properties.
 		$length = count($reflective_properties);
 
 		if (!$length) {

@@ -21,6 +21,9 @@ It is interactive insofar as it lets you …
 
 ## Basic Usage
 
+<!--//
+{ Whole part commented out because it does not work. Composer cannot find the class, even with an entry added to the psr-4 block. You still need to require the functions.php, and *then* you can use "use". }
+
 If you prefer working with classes:
 
 ```php
@@ -34,7 +37,9 @@ IVD::dump($user);
 
 　​
 
-Alternatively, `require` or `include` the file `InteractiveVarDump/functions.php` into your working environment in order to get access to the global wrapper functions. They work the same way under the hood.
+//-->
+
+<!-- Alternatively, --> `require` or `include` the file `InteractiveVarDump/functions.php` into your working environment in order to get access to the global wrapper functions. <!-- They work the same way under the hood. -->
 
 ```php
 require_once InteractiveVarDump/functions.php;
@@ -59,6 +64,7 @@ $price = convert($price);
 ivd($price, 'after');
 ```
 
+
 　​
 
 Example #2:
@@ -71,6 +77,7 @@ public function calculate( ...$args ) {
 	// …
 }
 ```
+
 
 　​
 
@@ -85,17 +92,36 @@ ivd(compact('teamA', 'teamB', 'score'));
 ```
 
 
+Example #4:
+
+```php
+foreach ($rows as $row) {
+	ivd($row, 'row', array('indent' => 0));
+
+	foreach ($row as $field => $value) {
+		ivd(array(
+			'field' => $field,
+			'formatted' => formatter($value),
+
+		), 'each value', array('indent' => 1));
+		// …
+	}
+}
+```
+
+
 　​
 
-If, in rare cases, you wish to skip the style and JavaScript includes, you can use either of these shorthands for what you possibly would have done anyway:
+If, in rare cases, you wish to skip the CSS and JavaScript includes, you can use <!-- either of these shorthands --> this shorthand for what you possibly would have done anyway:
 
 ```php
 qvd($my_var);
-IVD::simple($my_var);
 
 // →
 echo '<pre style="white-space: pre-wrap;">'; var_dump($my_var); echo '</pre><br />';
 ```
+<!-- { Formerly line 2 of code-block; deactivated because it doesn't work } -- IVD::simple($my_var); -->
+
 
 > Note: This simpler, secondary shorthand also supports the pretext, but not the configuration argument.
 
@@ -117,7 +143,7 @@ Link | Functionality
 
 > Note: The tool automatically detects and marks strings if they contain HTML-entities.
 >
-> Compare how, although being displayed in the browser as `Kirby's Dream Course`, the string value is actually `Kirby\&#39;s Dream Course`.
+> Compare how, although being displayed in the browser as `Kirby's Dream Course`, the string value is actually `Kirby&#39;s Dream Course`.
 
 
  　​
@@ -130,7 +156,7 @@ Option | Type | Default | Description
 ------ | ---- | ------- | -----------
 `return` | boolean | `FALSE` | Set to `TRUE` in order to get the tree as a return value instead.
 `color` | string | `all` | If neither the key/value nor the link colorization is for you, you can deactivate those colors granularly: [ `all`, `link`, `box`, `none` ].
-`max_depth` | integer | `10` | By default, a check for too deep nesting is implemented in order to prevent a fatal exception for circular object references. Modify the depth to your needs.
+`max_depth` | integer | `10` | By default, a check for too deep nesting is implemented in order to prevent a fatal exception for circular object references. Modify the depth to your needs. Minimal value: `2`.
 `indent` | integer | `0` | Indentation level. Indent the box in increments of 15px; supports up to 20.
 `start_collapsed` | boolean | `FALSE` | Will have the root-node collapsed on page-load.
 
