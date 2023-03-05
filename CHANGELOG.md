@@ -1,6 +1,14 @@
 
 # Change Log
 
+## 1.3.1
+*(ø)*
+
+* Bugfix: import and setup.
+
+
+　​
+
 ## 1.3.0
 *(2023-03-05)*
 

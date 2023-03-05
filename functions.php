@@ -4,13 +4,15 @@
  *
  * @copyright "Copyright" © 2016
  * @author Rafael Cieslik <woodrow.shigeru@gmx.net>
- * @version 1.3.0
+ * @version 1.3.1-dev
  */
 
 use InteractiveVarDump\InteractiveVarDump as IVD;
 use InteractiveVarDump\Tree;
 
 require_once dirname(__FILE__) .'/vendor/autoload.php';
+//
+// TODO  this seems to be bad. Now I have to download from GitHub, require "functions.php", but additionally even: traverse to vendor dir and manually call composer dumpautoload -o for this package individually. That's bullshit.
 
 
 if (function_exists('ivd')) {
