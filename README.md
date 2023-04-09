@@ -7,7 +7,7 @@ It is interactive insofar as it lets you …
 
 * … collapse and expand the individual children of the tree.
 * … display the path of deep tree nodes by clicking on an array key or object property. Use triple-click for copy-n-paste.
-* … click on the Z button in order to adjust z-index on the fly.
+* … click on the Z button in the top right corner in order to adjust z-index on the fly. If, for example, a website element like a header bar is partially blocking the view.
 
 ![Example dump](example-02.png)
 
@@ -19,33 +19,29 @@ It is interactive insofar as it lets you …
 
  　​
 
+## Setup
+
+Download the zip / tarball and unpack it, then `require` or `include` the file `InteractiveVarDump/functions.php` into your working environment as shown in the examples below, in order to get access to the global wrapper functions `ivd` and `qvd`.
+
+
+ 　​
+
 ## Basic Usage
 
-<!--//
-{ Whole part commented out because it does not work. Composer cannot find the class, even with an entry added to the psr-4 block. You still need to require the functions.php, and *then* you can use "use". }
-
 If you prefer working with classes:
-
-```php
-use InteractiveVarDump\InteractiveVarDump as IVD;
-
-$user = get_user();
-
-IVD::dump($user);
-```
-
-
-　​
-
-//-->
-
-<!-- Alternatively, --> `require` or `include` the file `InteractiveVarDump/functions.php` into your working environment in order to get access to the global wrapper functions. <!-- They work the same way under the hood. -->
 
 ```php
 require_once InteractiveVarDump/functions.php;
 
 $user = get_user();
 
+// Variant #1:
+InteractiveVarDump::dump($user);
+
+// Variant #2:
+IVD::dump($user);
+
+// Variant #3:
 ivd($user);
 ```
 
@@ -112,16 +108,15 @@ foreach ($rows as $row) {
 
 　​
 
-If, in rare cases, you wish to skip the CSS and JavaScript includes, you can use <!-- either of these shorthands --> this shorthand for what you possibly would have done anyway:
+If, in rare cases, you wish to skip the CSS and JavaScript includes, you can use either of these following shorthands for what you possibly would have done anyway:
 
 ```php
 qvd($my_var);
+IVD::simple($my_var);
 
 // →
 echo '<pre style="white-space: pre-wrap;">'; var_dump($my_var); echo '</pre><br />';
 ```
-<!-- { Formerly line 2 of code-block; deactivated because it doesn't work } -- IVD::simple($my_var); -->
-
 
 > Note: This simpler, secondary shorthand also supports the pretext, but not the configuration argument.
 
