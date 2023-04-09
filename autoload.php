@@ -2,9 +2,9 @@
 /**
  * InteractiveVarDump
  *
- * @copyright "Copyright" © 2016
+ * @copyright "Copyright" © 2016-2023
  * @author Rafael Cieslik <woodrow.shigeru@gmx.net>
- * @version 1.3.1-dev
+ * @version 1.3.1
  */
 
 // TODO  additionally, I forgot z-indexer onkeyup or onchange.
