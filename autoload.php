@@ -7,7 +7,7 @@
  * @version 1.3.2-dev
  */
 
-// TODO  additionally, I forgot z-indexer onkeyup or onchange.
+// TODO  additionally, I forgot z-indexer ~~onkeyup or onchange~~ oninput, but w/ debounce.
 
 // autoloader magic.
 spl_autoload_register(function($class) {

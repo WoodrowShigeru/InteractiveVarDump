@@ -4,7 +4,7 @@
 ## 1.3.2
 *(ø)*
 
-* ø
+* Added: `z_index` configuration as starting value per individual tree.
 
 
 　​

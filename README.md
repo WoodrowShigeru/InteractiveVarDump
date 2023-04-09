@@ -154,6 +154,7 @@ Option | Type | Default | Description
 `max_depth` | integer | `10` | By default, a check for too deep nesting is implemented in order to prevent a fatal exception for circular object references. Modify the depth to your needs. Minimal value: `2`.
 `indent` | integer | `0` | Indentation level. Indent the box in increments of 15px; supports up to 20.
 `start_collapsed` | boolean | `FALSE` | Will have the root-node collapsed on page-load.
+`z_index` | integer\|numstring | - | Set a starting `z_index` CSS value on page-load.
 
 
 　​
