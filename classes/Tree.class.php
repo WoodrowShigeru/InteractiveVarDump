@@ -41,9 +41,15 @@ class Tree {
 
 	/**
 	 * @var boolean $plz_start_collapsed
-	 *   Whether or not to start collapsed.
+	 *   Whether to start collapsed.
 	 */
 	private $plz_start_collapsed = FALSE;
+
+	/**
+	 * @var integer|null $z_index
+	 *   An optional starting z-index value.
+	 */
+	private $z_index = NULL;
 
 
 
@@ -121,6 +127,16 @@ class Tree {
 		}
 
 
+		// [z_index].
+		if (array_key_exists('z_index', $config)) {
+			$config['z_index'] = (int) $config['z_index'];
+
+			if (is_integer($config['z_index'])) {
+				$this->z_index	= $config['z_index'];
+			}
+		}
+
+
 		$this->max_depth	= $config['max_depth'];
 		$this->indent		= $config['indent'];
 		$this->color_mode	= $config['color'];
@@ -146,15 +162,21 @@ class Tree {
 	public function render() {
 
 		$classes = array('ivd__tree  ivd--dismissable');
+		$style = '';
 
 		if ($this->plz_start_collapsed) {
 			array_push($classes, 'ivd--start-collapsed');
+		}
+
+		if ($this->z_index !== NULL) {
+			$style = sprintf('z-index: %d;', $this->z_index);
 		}
 
 		return sprintf(
 			'<div class="%s"
 				data-ivd-color-mode="%s"
 				data-ivd-indent-level="%d"
+				style="%s"
 			>'
 		.		'<span class="ivd__dismiss">&times;</span>'
 		.		'<span class="ivd__z-indexer-start"
@@ -166,6 +188,7 @@ class Tree {
 			implode('  ', $classes),
 			$this->color_mode,
 			$this->indent,
+			$style,
 			$this->root->render()
 		);
 	}
