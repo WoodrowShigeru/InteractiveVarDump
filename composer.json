@@ -8,10 +8,5 @@
             "name": "Rafael Cieslik",
             "email": "woodrow.shigeru@gmx.net"
         }
-    ],
-	"autoload": {
-		"psr-4": {
-			"InteractiveVarDump\\": "classes/"
-		}
-	}
+    ]
 }

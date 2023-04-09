@@ -1,8 +1,12 @@
 <?php
 
-namespace InteractiveVarDump;
+// namespace InteractiveVarDump;
 
-use ReflectionObject;
+// use ReflectionObject;
+//
+// decision: since we are not using namespaces, we don't use this alias either.
+//   It only triggers a "The use statement with non-compound name %s has no
+//   effect" warning, anyway.
 
 
 /**

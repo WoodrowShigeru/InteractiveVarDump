@@ -1,6 +1,6 @@
 <?php
 
-namespace InteractiveVarDump;
+// namespace InteractiveVarDump;
 
 
 /**

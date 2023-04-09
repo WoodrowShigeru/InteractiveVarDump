@@ -7,14 +7,22 @@
  * @version 1.3.1-dev
  */
 
-use InteractiveVarDump\InteractiveVarDump as IVD;
-use InteractiveVarDump\Tree;
-
-require_once dirname(__FILE__) .'/vendor/autoload.php';
-//
-// TODO  this seems to be bad. Now I have to download from GitHub, require "functions.php", but additionally even: traverse to vendor dir and manually call composer dumpautoload -o for this package individually. That's bullshit.
-
 // TODO  additionally, I forgot z-indexer onkeyup or onchange.
+
+// autoloader magic.
+spl_autoload_register(function($class) {
+
+	$file = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+	$file = implode(DIRECTORY_SEPARATOR, array(
+		dirname(__FILE__),
+		'classes',
+		$class .'.class.php',
+	));
+
+	if (file_exists($file)) {
+		require_once $file;
+	}
+});
 
 
 if (function_exists('ivd')) {
