@@ -21,7 +21,7 @@ It is interactive insofar as it lets you …
 
 ## Setup
 
-Download the zip / tarball and unpack it, then `require` or `include` the file `InteractiveVarDump/functions.php` into your working environment as shown in the examples below, in order to get access to the global wrapper functions `ivd` and `qvd`.
+Download the zip / tarball and unpack it, then `require` or `include` the file `InteractiveVarDump/autoload.php` into your working environment as shown in the examples below, in order to get access to the global wrapper functions `ivd` and `qvd`.
 
 
  　​
@@ -31,7 +31,7 @@ Download the zip / tarball and unpack it, then `require` or `include` the file `
 If you prefer working with classes:
 
 ```php
-require_once InteractiveVarDump/functions.php;
+require_once InteractiveVarDump/autoload.php;
 
 $user = get_user();
 
