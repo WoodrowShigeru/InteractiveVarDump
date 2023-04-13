@@ -7,11 +7,6 @@
  * @version 1.3.2-dev
  */
 
-// TODO  bug: dumping model w/ uninstantiated property.
-
-
-
-
 // autoloader magic.
 spl_autoload_register(function($class) {
 

@@ -305,9 +305,17 @@ class Node {
 				);
 			}
 
+
 			// apply "ivd value" structure and display the value recursively (could be an object).
+
+			$value =
+				$property->isInitialized($this->obj)
+			?	$property->getValue($this->obj)
+			:	'{UNINITIALIZED-PROPERTY}'
+			;
+
 			$sub = new Node(
-				$property->getValue($this->obj),
+				$value,
 				$this->max_depth,
 				$this->current_depth +1
 			);
