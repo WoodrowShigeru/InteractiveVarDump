@@ -2,7 +2,7 @@
 # Change Log
 
 ## 1.3.2
-*(ø)*
+*(2023-04-13)*
 
 * Added: `z_index` configuration as starting value per individual tree.
 * Adjusted: "z-indexer" value updates immediately (debounced) on-change; rather than on-blur.
