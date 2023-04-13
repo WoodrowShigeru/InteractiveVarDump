@@ -4,7 +4,7 @@
  *
  * @copyright "Copyright" © 2016-2023
  * @author Rafael Cieslik <woodrow.shigeru@gmx.net>
- * @version 1.3.2-dev
+ * @version 1.3.2
  */
 
 // autoloader magic.
