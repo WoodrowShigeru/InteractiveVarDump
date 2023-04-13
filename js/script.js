@@ -1,4 +1,52 @@
 ;(function( $ ) {
+let
+	app = {
+		const: {
+			wait: {
+				until_idle: 650,
+			},
+		},
+	},
+	debounced = {}
+;
+
+/**
+ * Apply the value dictated by the z-indexer.
+ *
+ * The value will be applied to the current tree that is attached to the opened
+ * z-indexer.
+ *
+ * @returns void
+ */
+app.apply_z_indexer_value = () => {
+	let
+		$z_indexer = $('#ivd__z-indexer [name="ivd__z_indexer"]'),
+		$tree = $('.ivd__tree[data-ivd-connect="z-indexer"]')
+	;
+	if (!$z_indexer.length || !$tree.length) {
+		return;
+	}
+
+	let
+		z_index = Number($z_indexer.val())
+	;
+	if (Number.isNaN(z_index)) {
+		z_index = 0;
+	}
+
+	$tree.css('z-index', z_index);
+};
+
+
+/**
+ * Wait for the z-indexer value to be set, then apply it.
+ *
+ * @returns function
+ */
+debounced.z_indexer_updates_tree = ivd__debounce(
+	app.apply_z_indexer_value, app.const.wait.until_idle
+);
+
 
 
 $(document)
@@ -11,7 +59,9 @@ $(document)
 			return;
 		}
 
+		// if dismissing a tree that has a connected z-indexer.
 		if ($dismissable.is('.ivd__tree[data-ivd-connect="z-indexer"]')) {
+			// remove z-indexer also.
 			$('#ivd__z-indexer').remove();
 
 		} else if ($dismissable.is('#ivd__z-indexer')) {
@@ -67,7 +117,7 @@ $(document)
 	})
 
 
-	// overhead: batch-collaps0rs.
+	// overhead: batch-collapsers.
 	.on('click', '.ivd__batch-collapse', (ev) => {
 
 		$(ev.currentTarget).closest('.ivd__tree')
@@ -77,7 +127,7 @@ $(document)
 	})
 
 
-	// overhead: batch-expand0rs.
+	// overhead: batch-expanders.
 	.on('click', '.ivd__batch-expand', (ev) => {
 
 		$(ev.currentTarget).closest('.ivd__tree')
@@ -183,26 +233,8 @@ $(document)
 	})  // end of ( on-click z-indexer-start )
 
 
-	// apply z-index on-blur.
-	.on('blur', ':input[name="ivd__z_indexer"]', (ev) => {
-		let
-			$z_indexer = $('#ivd__z-indexer [name="ivd__z_indexer"]'),
-			$tree = $('.ivd__tree[data-ivd-connect="z-indexer"]')
-		;
-		if (!$z_indexer.length || !$tree.length) {
-			return;
-		}
-
-		let
-			z_index = Number($z_indexer.val())
-		;
-		if (Number.isNaN(z_index)) {
-			z_index = 0;
-		}
-
-		$tree.css('z-index', z_index);
-
-	})  // end of ( on-blur z-indexer input )
+	// apply z-index on-change-value (= on-input).
+	.on('input', ':input[name="ivd__z_indexer"]', debounced.z_indexer_updates_tree)
 
 
 	.ready((ready_ev) => {

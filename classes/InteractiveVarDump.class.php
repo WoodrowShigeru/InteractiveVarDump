@@ -54,11 +54,15 @@ class InteractiveVarDump {
 			include $dir .'css/style.min.css';
 			echo '</style>';
 
-			echo '<script type="text/javascript">';
+			echo '<script>';
 				include $dir .'js/jquery.js';
 			echo '</script>';
 
-			echo '<script type="text/javascript">';
+			echo '<script>';
+				include $dir .'js/debounce.min.js';
+			echo '</script>';
+
+			echo '<script>';
 				include $dir .'js/script.js';
 			echo '</script>';
 		}
