@@ -7,9 +7,9 @@ It is interactive insofar as it lets you …
 
 * … collapse and expand the individual children of the tree.
 * … display the path of deep tree nodes by clicking on an array key or object property. Use triple-click for copy-n-paste.
-* … click on the Z button in the top right corner in order to adjust z-index on the fly. If, for example, a website element like a header bar is partially blocking the view.
+* … click on the Z button in the top right corner in order to adjust z-index on the fly. If, for example, a website element like a header bar is partially blocking the view. Type directly in the "z-indexer" box; hold <kbd>↑</kbd> or <kbd>↓</kbd>; or use the mousewheel while hovering over the box.
 
-![Example dump](example-02.png)
+![Example dump](example-03.png)
 
 > Note: Does not work with some few data types, i.e.:
 >
@@ -123,7 +123,7 @@ echo '<pre style="white-space: pre-wrap;">'; var_dump($my_var); echo '</pre><br 
 
 　​
 
-Depending on the complexity of the dumped variable, additional overhead links will appear in the head of the tree.
+Depending on the complexity of the dumped variable, additional overhead links will appear automatically in the head of the tree.
 
 Link | Functionality
 ---- | -------------

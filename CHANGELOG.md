@@ -5,6 +5,7 @@
 *(ø)*
 
 * Added: `z_index` configuration as starting value per individual tree.
+* Adjusted: "z-indexer" value updates immediately (debounced) on-change; rather than on-blur.
 
 
 　​
