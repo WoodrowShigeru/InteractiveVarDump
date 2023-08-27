@@ -46,7 +46,7 @@
 ## 1.2.6
 *(2022-10-15)*
 
-* Bugfix: includes of assets sometimes look in wrong path.
+* Bugfix: includes of assets sometimes looked in wrong path.
 
 
 　​
