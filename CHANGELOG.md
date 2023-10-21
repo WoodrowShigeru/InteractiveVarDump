@@ -4,7 +4,7 @@
 ## 1.3.3
 *(ø)*
 
-* ø
+* trivial: changed internal package name in `composer.json`.
 
 
 　​
