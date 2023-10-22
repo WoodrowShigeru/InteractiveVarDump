@@ -16,7 +16,10 @@ class InteractiveVarDump {
 	 * @var boolean $is_initialized
 	 *   Whether the library has been initalized yet.
 	 */
-	private static bool $is_initialized = FALSE;
+	private static $is_initialized = FALSE;
+
+	// decision: not using type casting on class properties in order to avoid
+	//   dependency on PHP 8.
 
 
 
