@@ -1,5 +1,6 @@
 /interactive-var-dump.sublime-project
 /interactive-var-dump.sublime-workspace
 /interactive-var-dump.pin.md
-/vendor/
+/vendor
+/dist
 

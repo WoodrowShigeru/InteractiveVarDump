@@ -4,8 +4,9 @@
 ## 1.3.3
 *(ø)*
 
-* trivial: changed internal package name in `composer.json`.
-* made server-side manual test suite part of repository.
+* Updated composer schema.
+* Made server-side manual test suite part of repository.
+* Added a build compiler that creates a dist directory with less clutter.
 
 
 　​

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# build a distributable version
+
+
+ROOT="$(git rev-parse --show-toplevel)"
+VERSION="$(jq -r '.version' composer.json)"
+
+cd "$ROOT"
+
+
+if [[ ! -d "dist" ]]; then
+	mkdir dist
+fi
+
+rm -rf dist/*
+
+sass -s compressed scss/style.scss css/style.min.css
+
+cp -pR LICENSE README*.* CHANGELOG.md autoload.php vendor css js classes dist/
+
+echo "$VERSION" > dist/version
+
+
+echo "Have created a distributable package for ${VERSION}"
+echo ""
+
