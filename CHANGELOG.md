@@ -5,6 +5,7 @@
 *(ø)*
 
 * trivial: changed internal package name in `composer.json`.
+* made server-side manual test suite part of repository.
 
 
 　​
