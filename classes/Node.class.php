@@ -308,11 +308,27 @@ class Node {
 
 			// apply "ivd value" structure and display the value recursively (could be an object).
 
-			$value =
-				$property->isInitialized($this->obj)
-			?	$property->getValue($this->obj)
-			:	'{UNINITIALIZED-PROPERTY}'
-			;
+			$value = '{UNKNOWN-PROPERTY-VALUE}';
+
+			// quickfix:
+			// if not PHP 7.4 or higher.
+			if (version_compare(PHP_VERSION, '7.4') < 0) {
+				$value = $property->getValue($this->obj);
+				//
+				// Note: just let crashes happen if they do. I don't aim to
+				//   support <7.4, so this is just a way to not hold me back
+				//   right now.
+				// TODO  return here and clean up once we have a proper PHP version.
+
+			} else {
+				$value =
+					// this method requires PHP 7.4.
+					$property->isInitialized($this->obj)
+				?	$property->getValue($this->obj)
+				:	'{UNINITIALIZED-PROPERTY}'
+				;
+			}
+
 
 			$sub = new Node(
 				$value,

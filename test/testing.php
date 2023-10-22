@@ -11,6 +11,8 @@
 // - → Vagrant.  Get rid of LAMP.
 // - use synced folders instead of symbolic links from /var/www/… to ~/work/.
 
+// TODO  consider setting up a separate vagrant machine-- Nay, multiple ones, solely dedicated to testing IVD in different PHP versions.
+
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -19,13 +21,7 @@ ini_set('display_errors', 1);
 // - drag & drop.
 
 
-$code_base = "./1.3.3-dev/autoload.php";
-if (!file_exists($code_base)) {
-	$code_base = "./1.3.2/autoload.php";
-}
-require_once $code_base;
-//
-// $ please rm -rf 1.2.3-dev && please cp -pR ~/work/InteractiveVarDump 1.2.3-dev
+require_once "./latest/autoload.php";
 
 
 // "responsive".
