@@ -161,5 +161,6 @@ Option | Type | Default | Description
 
 ## Depencendies
 
+* PHP 7
 * [jQuery](https://github.com/jquery/jquery) v1.11.0
 
