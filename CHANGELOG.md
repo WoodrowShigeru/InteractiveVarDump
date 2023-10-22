@@ -5,6 +5,7 @@
 *(ø)*
 
 * trivial: changed internal package name in `composer.json`.
+* Added a build compiler that creates a dist directory with less clutter.
 
 
 　​
