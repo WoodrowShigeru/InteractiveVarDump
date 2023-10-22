@@ -4,8 +4,6 @@
 //
 // decision: we don't use namespaces, for spl_autoload_register() to work.
 
-// Test, #mergecleanup. About to set up `dist/` management.
-
 
 /**
  * Wrapper class for actual calls.
