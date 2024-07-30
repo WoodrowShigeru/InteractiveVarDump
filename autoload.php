@@ -6,6 +6,8 @@
  * @author Rafael Cieslik <woodrow.shigeru@gmx.net>
  */
 
+// TODO  new insight: this ↓ first function is wrong. I don't need to manually do what vendor/autoload.php is already doing. This autoload.php wrapper – solely there to add the shorthands – should merely require `./vendor/autoload.php`.
+
 // autoloader magic.
 spl_autoload_register(function($class) {
 
