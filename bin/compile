@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# build a distributable version
+# Compile a distributable version.
 
 
 ROOT="$(git rev-parse --show-toplevel)"
