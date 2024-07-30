@@ -2,11 +2,12 @@
 # Change Log
 
 ## 1.3.3
-*(ø)*
+*(2024-07-30)*
 
 * Updated composer schema.
 * Made server-side manual test suite part of repository.
-* Added a build compiler that creates a dist directory with less clutter.
+* Added a compiler that creates a `dist/` directory with less clutter.
+* Increased bloody font-size.
 
 
 　​
