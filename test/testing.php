@@ -42,7 +42,7 @@ if (!in_array($color_mode, $valid_color_modes)) {
 
 	<style type="text/css">
 		html {
-			font-size: 14px;
+			font-size: 16px;
 		}
 
 		body {
